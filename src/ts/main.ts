@@ -132,14 +132,12 @@ function showPurchaseModal() {
   });
 }
 
+//funktioner för att visa sidorna när man öppnar och gömma sidorna när man stänger
 function openPage(theButton: HTMLButtonElement, thePage: HTMLElement) {
   theButton.addEventListener("click", () => {
     thePage.classList.add("active");
-
-    console.log("hdhd");
   });
 }
-
 function closePage(theButton: HTMLButtonElement, thePage: HTMLElement) {
   theButton.addEventListener("click", () => {
     thePage.classList.remove("active");
@@ -172,9 +170,6 @@ const checkoutContainer = document.querySelector(
 openPage(openCheckoutButton, checkoutContainer);
 closePage(closeCheckoutButton, checkoutContainer);
 
-/* const openCheckoutButton = document.querySelector(".cart__checkout-button");
-const checkoutContainer = document.querySelector(".main-wrapper__checkout");
-
-openCheckoutButton?.addEventListener("click", () => {
-  checkoutContainer?.classList.add("main-wrapper__checkout--active");
-}); */
+closeCheckoutButton.addEventListener("click", () => {
+  cartContainer.classList.remove("active");
+});
