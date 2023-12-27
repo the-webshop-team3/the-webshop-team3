@@ -1,12 +1,14 @@
 import "./../scss/style.scss";
 import { Product } from "./models/Product";
 
+
 const products = [
   new Product(
     "Kungsgran",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7xjNHyxM5rjPWc3rV_EZYVqaG5OmAso6eFw&usqp=CAU",
     "Medium",
     499,
+    "Text om gran 1",
     "001"
   ),
   new Product(
@@ -14,6 +16,7 @@ const products = [
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7xjNHyxM5rjPWc3rV_EZYVqaG5OmAso6eFw&usqp=CAU",
     "Medium",
     350,
+    "Text om gran 2",
     "002"
   ),
   new Product(
@@ -21,6 +24,7 @@ const products = [
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7xjNHyxM5rjPWc3rV_EZYVqaG5OmAso6eFw&usqp=CAU",
     "Stor",
     699,
+    "Text om gran 3",
     "003"
   ),
   new Product(
@@ -28,6 +32,7 @@ const products = [
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7xjNHyxM5rjPWc3rV_EZYVqaG5OmAso6eFw&usqp=CAU",
     "Liten",
     350,
+    "Text om gran 4",
     "004"
   ),
   new Product(
@@ -35,6 +40,7 @@ const products = [
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7xjNHyxM5rjPWc3rV_EZYVqaG5OmAso6eFw&usqp=CAU",
     "Liten",
     250,
+    "Text om gran 5",
     "005"
   ),
   new Product(
@@ -42,6 +48,7 @@ const products = [
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7xjNHyxM5rjPWc3rV_EZYVqaG5OmAso6eFw&usqp=CAU",
     "Stor",
     390,
+    "Text om gran 6",
     "006"
   ),
 ];
@@ -49,14 +56,14 @@ const products = [
 console.log(products);
 
 const createProductsHtml = () => {
-  for (let i = 0; i < products.length; i++) {
-    const productContainer = document.createElement("div");
+for (let i = 0; i < products.length; i++){
+    const productContainer = document.createElement("div")
     const productTitle = document.createElement("h2");
     const productImage = document.createElement("img");
     const productPrice = document.createElement("p");
     const productID = document.createElement("p");
-    const productSize = document.createElement("p");
-    const addToCartButton = document.createElement("button");
+    const productSize = document.createElement("p")
+    const addToCartButton = document.createElement("button")
 
     productTitle.innerHTML = products[i].title;
     productImage.innerHTML = products[i].imageUrl;
@@ -76,8 +83,33 @@ const createProductsHtml = () => {
     document
       .querySelector(".main-wrapper__products")
       ?.appendChild(productContainer);
-  }
-};
+
+      productContainer.addEventListener("click", () => {
+        const productPage = document.querySelector(".main-wrapper__product-page");
+        const productPageTitle = document.getElementById("product-page-title");
+        const productPageImage = document.getElementById("product-page-image");
+        const productPageInfo = document.getElementById("product-page-info");
+        const productPagePrice = document.getElementById("product-page-price");
+  
+  
+        productPage?.classList.add("main-wrapper__product-page--active");
+  
+        if (productPageTitle) {
+          productPageTitle.innerHTML = products[i].title;
+        }
+        if (productPageImage) {
+          productPageImage.setAttribute("src",products[i].imageUrl)
+        }
+        if (productPageInfo) {
+          productPageInfo.innerHTML = products[i].info;
+        }
+        if (productPagePrice){
+          productPagePrice.innerHTML = products[i].price.toString() + " kr";
+        }
+      });
+    }
+  };
+
 createProductsHtml();
 
 const buyButton = document.getElementById("modalButton") as HTMLButtonElement;

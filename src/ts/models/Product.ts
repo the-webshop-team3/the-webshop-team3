@@ -4,6 +4,8 @@ export class Product{
         public imageUrl: string,
         public size: string,
         public price: number,
+        public info: string,
         public id: string,
+
     ) {}
 }

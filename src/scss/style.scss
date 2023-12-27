@@ -25,6 +25,7 @@
   justify-content: space-around;
   gap: .5rem;
   align-items: center;
+  cursor: pointer;
   &__product-card{
     width: 45%;
     border: 1px solid v.$secondaryColor;
@@ -88,6 +89,11 @@
   height: 100vh;
   position: relative;
   display: none;
+
+
+  &--active{
+    display: flex;
+  }
 
   .main-wrapper__product-page__close-button {
     position: absolute;
