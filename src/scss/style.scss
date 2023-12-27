@@ -9,7 +9,7 @@
 .header {
   display: flex;
   height: 100vh;
-  background: url('src/img/snow-7655439_1920.png') center/cover no-repeat;
+  background: url("src/img/snow-7655439_1920.png") center/cover no-repeat;
   font-size: v.$fontSizeLarge;
   justify-content: center;
   align-items: center;
@@ -40,14 +40,29 @@
 
 .cart {
   height: 100vh;
+  width: 100vw;
   border: 1px solid red;
-  //  display: none;
+  background-color: rgba(128, 128, 128, 0.876);
+  /* display: none; */
   &--checkout {
     height: unset;
     min-height: 20vh;
     display: flex !important;
   }
+
+  button {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    height: fit-content;
+  }
 }
+
+.cart.active {
+  display: flex;
+  position: fixed;
+  top: 0;
+}
+
 .main-wrapper__checkout {
   position: relative;
   display: none;
@@ -64,6 +79,7 @@
 }
 .main-wrapper__cart-button {
   position: fixed;
+  z-index: 5;
   bottom: 1rem;
   right: 1rem;
 }
