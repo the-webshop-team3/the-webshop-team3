@@ -39,3 +39,10 @@ const checkoutContainer = document.querySelector(
 
 openPage(openCheckoutButton, checkoutContainer);
 closePage(closeCheckoutButton, checkoutContainer);
+
+/* const openCheckoutButton = document.querySelector(".cart__checkout-button");
+const checkoutContainer = document.querySelector(".main-wrapper__checkout");
+
+openCheckoutButton?.addEventListener("click", () => {
+  checkoutContainer?.classList.add("main-wrapper__checkout--active");
+}); */
