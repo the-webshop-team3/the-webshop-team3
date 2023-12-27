@@ -9,7 +9,7 @@
 .header {
   display: flex;
   height: 100vh;
-  background: url('src/img/snow-7655439_1920.png') center/cover no-repeat;
+  background: url("src/img/snow-7655439_1920.png") center/cover no-repeat;
   font-size: v.$fontSizeLarge;
   justify-content: center;
   align-items: center;
@@ -23,13 +23,18 @@
 .cart {
   height: 100vh;
   border: 1px solid red;
-  //  display: none;
+  display: none;
   &--checkout {
     height: unset;
     min-height: 20vh;
     display: flex !important;
   }
 }
+
+.cart.active {
+  display: flex;
+}
+
 .main-wrapper__checkout {
   position: relative;
   display: none;
