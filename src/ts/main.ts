@@ -72,6 +72,7 @@ for (let i = 0; i < products.length; i++){
     productImage.setAttribute("src", products[i].imageUrl);
     productID.innerHTML = "Art.nr: " + products[i].id;
     addToCartButton.innerHTML = "Lägg i varukorg";
+    addToCartButton.className = "addtocartbutton"
 
     productContainer.classList.add("main-wrapper__products__product-card");
 
@@ -90,7 +91,9 @@ for (let i = 0; i < products.length; i++){
         const productPageImage = document.getElementById("product-page-image");
         const productPageInfo = document.getElementById("product-page-info");
         const productPagePrice = document.getElementById("product-page-price");
+        const productPageAddToCartButton = document.getElementById("product-page-cart-button");
   
+        /* roductPageAddToCartButton?.classList.add("addtocartbutton")  */
   
         productPage?.classList.add("main-wrapper__product-page--active");
   
@@ -106,11 +109,28 @@ for (let i = 0; i < products.length; i++){
         if (productPagePrice){
           productPagePrice.innerHTML = products[i].price.toString() + " kr";
         }
+      
+        productPageAddToCartButton?.addEventListener("click",() => {
+          cart.push(products[i])
+        })
+        
+        console.log(cart)
       });
+
+      const cart:Product[] = [];
+      document.querySelectorAll(".addtocartbutton").forEach(button => {
+        button.addEventListener("click", () => {
+          cart.push(products[i])
+          console.log(cart[i])
+        })
+      }); 
+      
+      
+      
     }
   };
-
-createProductsHtml();
+  
+  createProductsHtml();
 
 const buyButton = document.getElementById("modalButton") as HTMLButtonElement;
 buyButton.addEventListener("click", handlePurchase);
@@ -173,3 +193,4 @@ closePage(closeCheckoutButton, checkoutContainer);
 closeCheckoutButton.addEventListener("click", () => {
   cartContainer.classList.remove("active");
 });
+
