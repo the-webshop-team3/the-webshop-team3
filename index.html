@@ -8,9 +8,11 @@
     <title>Sell it or buy it?</title>
   </head>
   <body>
+
     <header class="header">
       <h1 class="header__logo">Logga</h1>
     </header>
+
     <main id="main" class="main-wrapper">
       <button class="main-wrapper__cart-button">Till varukorg</button>
       <section class="main-wrapper__products">
@@ -38,19 +40,20 @@
     <h3 class="cart__heading">Varukorg</h3>
     <section class="cart__items"></section>
   </section>
+
   <form>
-    <label for="fullname">Namn<label>
+    <label for="fullname">Namn</label>
     <input type="text" name="fullname" id="fullname">
-    <label for="address">Adress<label>
+    <label for="address">Adress</label>
     <input type="text" name="address" id="address">
-    <label for="zipcode">Postnummer<label>
+    <label for="zipcode">Postnummer</label>
       <input type="text" name="zipcode" id="zipcode">
-    <label for="email">E-mail<label>
+    <label for="email">E-mail</label>
       <input type="email" name="email" id="email">
-    <label for="tel">Tel<label>
+    <label for="tel">Tel</label>
       <input type="tel" pattern=" [0-9]{3}-[0-9]{3}-[0-9]{4}" name="tel" id="tel">
-      <button>Genomför köp</button>
-    </label>
+      <button id="modalButton">Genomför köp</button>
+    </form>
 </section>
     </main>
 
@@ -63,6 +66,15 @@
       </section>
     </aside>
     
+    <section class="modalContainer">
+    <div id="purchaseModal" class="modal">
+      <div class="modal-content">
+        <span id="closeModalButton" class="close">&times;</span>
+        <p>Tack för ditt köp! &#x1F603;</p>
+      </div>
+    </div>
+  </section>
+
     <footer class="footer">
       <p class="footer__copyright">&copy; grupp3 2024</p>
     </footer>
