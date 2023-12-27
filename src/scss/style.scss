@@ -19,6 +19,24 @@
   min-height: 70vh;
   border: 1px solid v.$secondaryColor;
 }
+.main-wrapper__products{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: .5rem;
+  align-items: center;
+  &__product-card{
+    width: 45%;
+    border: 1px solid v.$secondaryColor;
+    padding: 1rem 2rem;
+    img{
+      object-fit: contain;
+      width: 100%;
+    }
+    
+    
+  }
+}
 
 .cart {
   height: 100vh;
