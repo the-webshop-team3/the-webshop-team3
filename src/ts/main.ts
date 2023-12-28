@@ -137,10 +137,10 @@ const cartHtml = () =>{
 
     productTitle.innerHTML = products[i].title;
     productImage.setAttribute('src', products[i].imageUrl);
-    productPrice.innerHTML = products[i].price.toString();
+    productPrice.innerHTML = products[i].price.toString() + " kr";
     addButton.innerHTML = '+';
     removeButton.innerHTML = '-';
-    articleNumber.innerHTML = products[i].id;
+    articleNumber.innerHTML = "Art.nr: " + products[i].id;
 
     productContainer.appendChild(productTitle);
     productContainer.appendChild(productImage);
@@ -171,10 +171,10 @@ const cartHtmlForCheckout = () =>{
 
     productTitle.innerHTML = products[i].title;
     productImage.setAttribute('src', products[i].imageUrl);
-    productPrice.innerHTML = products[i].price.toString();
+    productPrice.innerHTML = products[i].price.toString() + " kr";
     addButton.innerHTML = '+';
     removeButton.innerHTML = '-';
-    articleNumber.innerHTML = products[i].id;
+    articleNumber.innerHTML = "Art.nr: " + products[i].id;
 
     productContainer.appendChild(productTitle);
     productContainer.appendChild(productImage);
