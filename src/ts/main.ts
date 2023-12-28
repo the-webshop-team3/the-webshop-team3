@@ -1,7 +1,6 @@
 import "./../scss/style.scss";
 import { Product } from "./models/Product";
 
-
 const products = [
   new Product(
     "Kungsgran",
@@ -53,17 +52,24 @@ const products = [
   ),
 ];
 
+//-------
+const cart: Product[] = [];
+//-----
+
 console.log(products);
 
 const createProductsHtml = () => {
-for (let i = 0; i < products.length; i++){
-    const productContainer = document.createElement("div")
+  for (let i = 0; i < products.length; i++) {
+    const productContainer = document.createElement("div");
     const productTitle = document.createElement("h2");
     const productImage = document.createElement("img");
     const productPrice = document.createElement("p");
     const productID = document.createElement("p");
-    const productSize = document.createElement("p")
-    const addToCartButton = document.createElement("button")
+    const productSize = document.createElement("p");
+    const addToCartButton = document.createElement("button");
+    //------
+    /* addToCartButton.className = "addtocartbutton"; */
+    //-----
 
     productTitle.innerHTML = products[i].title;
     productImage.innerHTML = products[i].imageUrl;
@@ -84,31 +90,37 @@ for (let i = 0; i < products.length; i++){
       .querySelector(".main-wrapper__products")
       ?.appendChild(productContainer);
 
-      productContainer.addEventListener("click", () => {
-        const productPage = document.querySelector(".main-wrapper__product-page");
-        const productPageTitle = document.getElementById("product-page-title");
-        const productPageImage = document.getElementById("product-page-image");
-        const productPageInfo = document.getElementById("product-page-info");
-        const productPagePrice = document.getElementById("product-page-price");
-  
-  
-        productPage?.classList.add("main-wrapper__product-page--active");
-  
-        if (productPageTitle) {
-          productPageTitle.innerHTML = products[i].title;
-        }
-        if (productPageImage) {
-          productPageImage.setAttribute("src",products[i].imageUrl)
-        }
-        if (productPageInfo) {
-          productPageInfo.innerHTML = products[i].info;
-        }
-        if (productPagePrice){
-          productPagePrice.innerHTML = products[i].price.toString() + " kr";
-        }
-      });
-    }
-  };
+    //-----
+    addToCartButton.addEventListener("click", () => {
+      cart.push(products[i]);
+      console.log(cart);
+    });
+    //-----
+
+    productContainer.addEventListener("click", () => {
+      const productPage = document.querySelector(".main-wrapper__product-page");
+      const productPageTitle = document.getElementById("product-page-title");
+      const productPageImage = document.getElementById("product-page-image");
+      const productPageInfo = document.getElementById("product-page-info");
+      const productPagePrice = document.getElementById("product-page-price");
+
+      productPage?.classList.add("main-wrapper__product-page--active");
+
+      if (productPageTitle) {
+        productPageTitle.innerHTML = products[i].title;
+      }
+      if (productPageImage) {
+        productPageImage.setAttribute("src", products[i].imageUrl);
+      }
+      if (productPageInfo) {
+        productPageInfo.innerHTML = products[i].info;
+      }
+      if (productPagePrice) {
+        productPagePrice.innerHTML = products[i].price.toString() + " kr";
+      }
+    });
+  }
+};
 
 createProductsHtml();
 
