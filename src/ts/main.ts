@@ -53,6 +53,8 @@ const products = [
   ),
 ];
 
+const cart:Product[] = [];
+
 console.log(products);
 
 const createProductsHtml = () => {
@@ -80,11 +82,12 @@ for (let i = 0; i < products.length; i++){
     productContainer.appendChild(productImage);
     productContainer.appendChild(productSize);
     productContainer.appendChild(productPrice);
-    productContainer.appendChild(addToCartButton);
+    // productContainer.appendChild(addToCartButton);
     document
       .querySelector(".main-wrapper__products")
       ?.appendChild(productContainer);
 
+      // skapa innehåll till produktsida
       productContainer.addEventListener("click", () => {
         const productPage = document.querySelector(".main-wrapper__product-page");
         const productPageTitle = document.getElementById("product-page-title");
@@ -93,7 +96,7 @@ for (let i = 0; i < products.length; i++){
         const productPagePrice = document.getElementById("product-page-price");
         const productPageAddToCartButton = document.getElementById("product-page-cart-button");
   
-        /* roductPageAddToCartButton?.classList.add("addtocartbutton")  */
+        /* productPageAddToCartButton?.classList.add("addtocartbutton")  */
   
         productPage?.classList.add("main-wrapper__product-page--active");
   
@@ -112,20 +115,18 @@ for (let i = 0; i < products.length; i++){
       
         productPageAddToCartButton?.addEventListener("click",() => {
           cart.push(products[i])
+          console.log(cart)
         })
         
-        console.log(cart)
       });
 
-      const cart:Product[] = [];
-      document.querySelectorAll(".addtocartbutton").forEach(button => {
-        button.addEventListener("click", () => {
-          cart.push(products[i])
-          console.log(cart[i])
-        })
-      }); 
       
-      
+      // document.querySelectorAll(".addtocartbutton").forEach(button => {
+      //   button.addEventListener("click", () => {
+      //     cart.push(products[i])
+      //   })
+      //   // console.log(cart)
+      // }); 
       
     }
   };
@@ -193,4 +194,4 @@ closePage(closeCheckoutButton, checkoutContainer);
 closeCheckoutButton.addEventListener("click", () => {
   cartContainer.classList.remove("active");
 });
-
+console.log(cart)
