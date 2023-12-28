@@ -121,25 +121,25 @@ const createProductsHtml = () => {
     });
   }
 };
-const cartHtml = () =>{
+const cartHtml = () => {
   const cartContainer = document.querySelector("#cart-cart-items");
   if (cartContainer) {
     cartContainer.innerHTML = "";
   }
-  for(let i = 0; i < cart.length; i++){
-    const productContainer = document.createElement("div")
-    const productTitle = document.createElement("h3")
-    const productImage = document.createElement("img")
-    const productPrice = document.createElement("p")
-    const addButton = document.createElement("button")
-    const removeButton = document.createElement("button")
-    const articleNumber = document.createElement('p')
+  for (let i = 0; i < cart.length; i++) {
+    const productContainer = document.createElement("div");
+    const productTitle = document.createElement("h3");
+    const productImage = document.createElement("img");
+    const productPrice = document.createElement("p");
+    const addButton = document.createElement("button");
+    const removeButton = document.createElement("button");
+    const articleNumber = document.createElement("p");
 
     productTitle.innerHTML = products[i].title;
-    productImage.setAttribute('src', products[i].imageUrl);
+    productImage.setAttribute("src", products[i].imageUrl);
     productPrice.innerHTML = products[i].price.toString();
-    addButton.innerHTML = '+';
-    removeButton.innerHTML = '-';
+    addButton.innerHTML = "+";
+    removeButton.innerHTML = "-";
     articleNumber.innerHTML = products[i].id;
 
     productContainer.appendChild(productTitle);
@@ -151,29 +151,29 @@ const cartHtml = () =>{
 
     cartContainer?.appendChild(productContainer);
   }
-}
-cartHtml()
+};
+cartHtml();
 
-const cartHtmlForCheckout = () =>{
-  const cartInCheckout = document.querySelector("#checkout-cart-items")
+const cartHtmlForCheckout = () => {
+  const cartInCheckout = document.querySelector("#checkout-cart-items");
   if (cartInCheckout) {
-    cartInCheckout.innerHTML = ""
+    cartInCheckout.innerHTML = "";
   }
-  
-  for(let i = 0; i < cart.length; i++){
-    const productContainer = document.createElement("div")
-    const productTitle = document.createElement("h3")
-    const productImage = document.createElement("img")
-    const productPrice = document.createElement("p")
-    const addButton = document.createElement("button")
-    const removeButton = document.createElement("button")
-    const articleNumber = document.createElement('p')
+
+  for (let i = 0; i < cart.length; i++) {
+    const productContainer = document.createElement("div");
+    const productTitle = document.createElement("h3");
+    const productImage = document.createElement("img");
+    const productPrice = document.createElement("p");
+    const addButton = document.createElement("button");
+    const removeButton = document.createElement("button");
+    const articleNumber = document.createElement("p");
 
     productTitle.innerHTML = products[i].title;
-    productImage.setAttribute('src', products[i].imageUrl);
+    productImage.setAttribute("src", products[i].imageUrl);
     productPrice.innerHTML = products[i].price.toString();
-    addButton.innerHTML = '+';
-    removeButton.innerHTML = '-';
+    addButton.innerHTML = "+";
+    removeButton.innerHTML = "-";
     articleNumber.innerHTML = products[i].id;
 
     productContainer.appendChild(productTitle);
@@ -185,8 +185,8 @@ const cartHtmlForCheckout = () =>{
 
     cartInCheckout?.appendChild(productContainer);
   }
-}
-cartHtmlForCheckout()
+};
+cartHtmlForCheckout();
 
 const productPageCartButton = document.getElementById(
   "product-page-cart-button"
@@ -217,6 +217,17 @@ function showPurchaseModal() {
   ) as HTMLButtonElement;
   closeModalButton.addEventListener("click", () => {
     modal.style.display = "none";
+
+    //tömmer cart arrayen och uppdaterar html
+    cart.splice(0, cart.length);
+    cartHtml();
+    cartHtmlForCheckout();
+    console.log(cart);
+    //stänger de öppna sidorna och scrollar till toppen
+    checkoutContainer.classList.remove("--active");
+    cartContainer.classList.remove("--active");
+    productPage.classList.remove("--active");
+    window.scrollTo(0, 0);
   });
 }
 
