@@ -1,4 +1,6 @@
 export class Product{
+    public quantity: number;
+
     constructor(
         public title: string,
         public imageUrl: string,
@@ -7,5 +9,7 @@ export class Product{
         public info: string,
         public id: string,
 
-    ) {}
+    ) {
+        this.quantity = 0;
+    }
 }

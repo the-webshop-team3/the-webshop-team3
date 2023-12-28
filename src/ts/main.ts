@@ -87,14 +87,22 @@ const createProductsHtml = () => {
       .querySelector(".main-wrapper__products")
       ?.appendChild(productContainer);
 
-    //-----
+    //----------------
     addToCartButton.addEventListener("click", () => {
-      cart.push(products[i]);
+      const index = cart.findIndex((item) => item.id === products[i].id);
+    
+      if (index !== -1) {
+        cart[index].quantity++;
+      } else {
+        products[i].quantity = 1;
+        cart.push({ ...products[i] });
+      }
       console.log(cart);
       cartHtml();
       cartHtmlForCheckout();
     });
-    //-----
+    
+    //---------------
 
     productContainer.addEventListener("click", () => {
       const productPage = document.querySelector(".main-wrapper__product-page");
@@ -134,6 +142,7 @@ const cartHtml = () =>{
     const addButton = document.createElement("button")
     const removeButton = document.createElement("button")
     const articleNumber = document.createElement('p')
+    const quantityDisplay = document.createElement("p"); //----------
 
     productTitle.innerHTML = products[i].title;
     productImage.setAttribute('src', products[i].imageUrl);
@@ -141,15 +150,33 @@ const cartHtml = () =>{
     addButton.innerHTML = '+';
     removeButton.innerHTML = '-';
     articleNumber.innerHTML = products[i].id;
+    quantityDisplay.innerHTML = `Antal: ${cart[i].quantity}`;//----------
 
     productContainer.appendChild(productTitle);
     productContainer.appendChild(productImage);
     productContainer.appendChild(productPrice);
     productContainer.appendChild(articleNumber);
     productContainer.appendChild(addButton);
+    productContainer.appendChild(quantityDisplay); //----------
     productContainer.appendChild(removeButton);
 
     cartContainer?.appendChild(productContainer);
+
+    //---------------
+    addButton.addEventListener("click", () => {
+      cart[i].quantity++;
+      cartHtml();
+      cartHtmlForCheckout();
+    });
+
+    removeButton.addEventListener("click", () => {
+      if (cart[i].quantity > 0) {
+        cart[i].quantity--;
+        cartHtml();
+        cartHtmlForCheckout();
+      }
+    });
+    //--------------
   }
 }
 cartHtml()
@@ -168,6 +195,7 @@ const cartHtmlForCheckout = () =>{
     const addButton = document.createElement("button")
     const removeButton = document.createElement("button")
     const articleNumber = document.createElement('p')
+    const quantityDisplay = document.createElement("p");
 
     productTitle.innerHTML = products[i].title;
     productImage.setAttribute('src', products[i].imageUrl);
@@ -175,6 +203,7 @@ const cartHtmlForCheckout = () =>{
     addButton.innerHTML = '+';
     removeButton.innerHTML = '-';
     articleNumber.innerHTML = products[i].id;
+    quantityDisplay.innerHTML = `Antal: ${cart[i].quantity}`;
 
     productContainer.appendChild(productTitle);
     productContainer.appendChild(productImage);
@@ -182,8 +211,26 @@ const cartHtmlForCheckout = () =>{
     productContainer.appendChild(articleNumber);
     productContainer.appendChild(addButton);
     productContainer.appendChild(removeButton);
-
+    productContainer.appendChild(quantityDisplay);
+    
     cartInCheckout?.appendChild(productContainer);
+
+
+    //-----------------
+    addButton.addEventListener("click", () => {
+      cart[i].quantity++;
+      cartHtml();
+      cartHtmlForCheckout();
+    });
+
+    removeButton.addEventListener("click", () => {
+      if (cart[i].quantity > 0) {
+        cart[i].quantity--;
+        cartHtml();
+        cartHtmlForCheckout();
+      }
+    });
+    //-------------------
   }
 }
 cartHtmlForCheckout()
@@ -192,7 +239,7 @@ const productPageCartButton = document.getElementById(
   "product-page-cart-button"
 );
 productPageCartButton?.addEventListener("click", () => {
-  cart.push(currentProduct);
+  cart.push({...currentProduct, quantity: 1}); //------------------
   console.log(cart);
   cartHtml();
   cartHtmlForCheckout();
