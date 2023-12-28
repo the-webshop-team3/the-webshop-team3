@@ -57,7 +57,7 @@ const cart: Product[] = [];
 //-----
 
 console.log(products);
-
+let currentProduct: Product;
 const createProductsHtml = () => {
   for (let i = 0; i < products.length; i++) {
     const productContainer = document.createElement("div");
@@ -67,9 +67,6 @@ const createProductsHtml = () => {
     const productID = document.createElement("p");
     const productSize = document.createElement("p");
     const addToCartButton = document.createElement("button");
-    //------
-    /* addToCartButton.className = "addtocartbutton"; */
-    //-----
 
     productTitle.innerHTML = products[i].title;
     productImage.innerHTML = products[i].imageUrl;
@@ -94,6 +91,7 @@ const createProductsHtml = () => {
     addToCartButton.addEventListener("click", () => {
       cart.push(products[i]);
       console.log(cart);
+      cartHtml()
     });
     //-----
 
@@ -103,8 +101,9 @@ const createProductsHtml = () => {
       const productPageImage = document.getElementById("product-page-image");
       const productPageInfo = document.getElementById("product-page-info");
       const productPagePrice = document.getElementById("product-page-price");
+      currentProduct = products[i];
 
-      productPage?.classList.add("main-wrapper__product-page--active");
+      productPage?.classList.add("--active");
 
       if (productPageTitle) {
         productPageTitle.innerHTML = products[i].title;
@@ -121,6 +120,43 @@ const createProductsHtml = () => {
     });
   }
 };
+const cartHtml = () =>{
+  const cartContainer = document.querySelector(".cart__items");
+  for(let i = 0; i < cart.length; i++){
+    const productContainer = document.createElement("div")
+    const productTitle = document.createElement("h3")
+    const productImage = document.createElement("img")
+    const productPrice = document.createElement("p")
+    const addButton = document.createElement("button")
+    const removeButton = document.createElement("button")
+    const articleNumber = document.createElement('p')
+
+    productTitle.innerHTML = products[i].title;
+    productImage.setAttribute('src', products[i].imageUrl);
+    productPrice.innerHTML = products[i].price.toString();
+    addButton.innerHTML = '+';
+    removeButton.innerHTML = '-';
+    articleNumber.innerHTML = products[i].id;
+
+    productContainer.appendChild(productTitle);
+    productContainer.appendChild(productImage);
+    productContainer.appendChild(productPrice);
+    productContainer.appendChild(articleNumber);
+    productContainer.appendChild(addButton);
+    productContainer.appendChild(removeButton);
+    cartContainer?.appendChild(productContainer);
+  }
+}
+cartHtml()
+
+const productPageCartButton = document.getElementById(
+  "product-page-cart-button"
+);
+productPageCartButton?.addEventListener("click", () => {
+  cart.push(currentProduct);
+  console.log(cart);
+  cartHtml()
+});
 
 createProductsHtml();
 
@@ -147,12 +183,12 @@ function showPurchaseModal() {
 //funktioner för att visa sidorna när man öppnar och gömma sidorna när man stänger
 function openPage(theButton: HTMLButtonElement, thePage: HTMLElement) {
   theButton.addEventListener("click", () => {
-    thePage.classList.add("active");
+    thePage.classList.add("--active");
   });
 }
 function closePage(theButton: HTMLButtonElement, thePage: HTMLElement) {
   theButton.addEventListener("click", () => {
-    thePage.classList.remove("active");
+    thePage.classList.remove("--active");
   });
 }
 
@@ -183,5 +219,14 @@ openPage(openCheckoutButton, checkoutContainer);
 closePage(closeCheckoutButton, checkoutContainer);
 
 closeCheckoutButton.addEventListener("click", () => {
-  cartContainer.classList.remove("active");
+  cartContainer.classList.remove("--active");
 });
+
+//öppna och stäng produktsida
+const closeProductPageButton = document.getElementById(
+  "product-page-close-button"
+) as HTMLButtonElement;
+const productPage = document.querySelector(
+  ".main-wrapper__product-page"
+) as HTMLElement;
+closePage(closeProductPageButton, productPage);
