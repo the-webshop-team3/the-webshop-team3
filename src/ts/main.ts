@@ -55,8 +55,6 @@ const products = [
 
 console.log(products);
 
-const cart:Product[] = []
-
 const createProductsHtml = () => {
 for (let i = 0; i < products.length; i++){
     const productContainer = document.createElement("div")
@@ -68,12 +66,13 @@ for (let i = 0; i < products.length; i++){
     const addToCartButton = document.createElement("button")
 
     productTitle.innerHTML = products[i].title;
-    // productImage.innerHTML = products[i].imageUrl;
+    productImage.innerHTML = products[i].imageUrl;
     productSize.innerHTML = products[i].size;
     productPrice.innerHTML = products[i].price.toString();
     productImage.setAttribute("src", products[i].imageUrl);
     productID.innerHTML = "Art.nr: " + products[i].id;
     addToCartButton.innerHTML = "Lägg i varukorg";
+    addToCartButton.className = "addtocartbutton"
 
     productContainer.classList.add("main-wrapper__products__product-card");
 
@@ -86,26 +85,18 @@ for (let i = 0; i < products.length; i++){
       .querySelector(".main-wrapper__products")
       ?.appendChild(productContainer);
 
-      //---->
-      addToCartButton.addEventListener('click', (event: MouseEvent) => {
-        event.stopPropagation();
-        addToCart(products[i]);
-      });
-      
       productContainer.addEventListener("click", () => {
         const productPage = document.querySelector(".main-wrapper__product-page");
         const productPageTitle = document.getElementById("product-page-title");
         const productPageImage = document.getElementById("product-page-image");
         const productPageInfo = document.getElementById("product-page-info");
         const productPagePrice = document.getElementById("product-page-price");
-      
-    
-        //-->
-        const productPageAddToCartButton = document.getElementById("product-page-close-button") as HTMLButtonElement;
-
-        
+        const productPageAddToCartButton = document.getElementById("product-page-cart-button");
+  
+        /* roductPageAddToCartButton?.classList.add("addtocartbutton")  */
+  
         productPage?.classList.add("main-wrapper__product-page--active");
-        
+  
         if (productPageTitle) {
           productPageTitle.innerHTML = products[i].title;
         }
@@ -118,16 +109,28 @@ for (let i = 0; i < products.length; i++){
         if (productPagePrice){
           productPagePrice.innerHTML = products[i].price.toString() + " kr";
         }
+      
+        productPageAddToCartButton?.addEventListener("click",() => {
+          cart.push(products[i])
+        })
         
-        //--->
-        productPageAddToCartButton.addEventListener('click', () => {
-          addToCart(products[i]);
-        });
+        console.log(cart)
       });
+
+      const cart:Product[] = [];
+      document.querySelectorAll(".addtocartbutton").forEach(button => {
+        button.addEventListener("click", () => {
+          cart.push(products[i])
+          console.log(cart[i])
+        })
+      }); 
+      
+      
+      
     }
   };
-
-createProductsHtml();
+  
+  createProductsHtml();
 
 const buyButton = document.getElementById("modalButton") as HTMLButtonElement;
 buyButton.addEventListener("click", handlePurchase);
@@ -149,38 +152,12 @@ function showPurchaseModal() {
   });
 }
 
-//---->
-function addToCart(product: Product) {
-  cart.push(product);
-
-  const cartItem = document.createElement("div");
-  cartItem.classList.add("cart__item");
-  cartItem.innerHTML = `
-    <p>${product.title}</p>
-    <p>${product.price} kr</p>
-  `;
-
-  const cartItemsContainer = document.querySelector(".cart__items") as HTMLElement;
-  cartItemsContainer.appendChild(cartItem);
-
-  updateCartItemCount();
-}
-
-function updateCartItemCount() {
-  const cartItemCount = document.querySelectorAll(".cart__items .cart__item").length;
-  const openCartButton = document.querySelector(".main-wrapper__cart-button") as HTMLButtonElement;
-  openCartButton.innerText = `Öppna varukorg (${cartItemCount})`;
-}
-//---->
-
+//funktioner för att visa sidorna när man öppnar och gömma sidorna när man stänger
 function openPage(theButton: HTMLButtonElement, thePage: HTMLElement) {
   theButton.addEventListener("click", () => {
     thePage.classList.add("active");
-
-    console.log("hdhd");
   });
 }
-
 function closePage(theButton: HTMLButtonElement, thePage: HTMLElement) {
   theButton.addEventListener("click", () => {
     thePage.classList.remove("active");
@@ -213,9 +190,7 @@ const checkoutContainer = document.querySelector(
 openPage(openCheckoutButton, checkoutContainer);
 closePage(closeCheckoutButton, checkoutContainer);
 
-/* const openCheckoutButton = document.querySelector(".cart__checkout-button");
-const checkoutContainer = document.querySelector(".main-wrapper__checkout");
+closeCheckoutButton.addEventListener("click", () => {
+  cartContainer.classList.remove("active");
+});
 
-openCheckoutButton?.addEventListener("click", () => {
-  checkoutContainer?.classList.add("main-wrapper__checkout--active");
-}); */
