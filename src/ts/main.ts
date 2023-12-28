@@ -91,7 +91,8 @@ const createProductsHtml = () => {
     addToCartButton.addEventListener("click", () => {
       cart.push(products[i]);
       console.log(cart);
-      cartHtml()
+      cartHtml();
+      cartHtmlForCheckout();
     });
     //-----
 
@@ -121,7 +122,10 @@ const createProductsHtml = () => {
   }
 };
 const cartHtml = () =>{
-  const cartContainer = document.querySelector(".cart__items");
+  const cartContainer = document.querySelector("#cart-cart-items");
+  if (cartContainer) {
+    cartContainer.innerHTML = "";
+  }
   for(let i = 0; i < cart.length; i++){
     const productContainer = document.createElement("div")
     const productTitle = document.createElement("h3")
@@ -144,10 +148,45 @@ const cartHtml = () =>{
     productContainer.appendChild(articleNumber);
     productContainer.appendChild(addButton);
     productContainer.appendChild(removeButton);
+
     cartContainer?.appendChild(productContainer);
   }
 }
 cartHtml()
+
+const cartHtmlForCheckout = () =>{
+  const cartInCheckout = document.querySelector("#checkout-cart-items")
+  if (cartInCheckout) {
+    cartInCheckout.innerHTML = ""
+  }
+  
+  for(let i = 0; i < cart.length; i++){
+    const productContainer = document.createElement("div")
+    const productTitle = document.createElement("h3")
+    const productImage = document.createElement("img")
+    const productPrice = document.createElement("p")
+    const addButton = document.createElement("button")
+    const removeButton = document.createElement("button")
+    const articleNumber = document.createElement('p')
+
+    productTitle.innerHTML = products[i].title;
+    productImage.setAttribute('src', products[i].imageUrl);
+    productPrice.innerHTML = products[i].price.toString();
+    addButton.innerHTML = '+';
+    removeButton.innerHTML = '-';
+    articleNumber.innerHTML = products[i].id;
+
+    productContainer.appendChild(productTitle);
+    productContainer.appendChild(productImage);
+    productContainer.appendChild(productPrice);
+    productContainer.appendChild(articleNumber);
+    productContainer.appendChild(addButton);
+    productContainer.appendChild(removeButton);
+
+    cartInCheckout?.appendChild(productContainer);
+  }
+}
+cartHtmlForCheckout()
 
 const productPageCartButton = document.getElementById(
   "product-page-cart-button"
@@ -155,7 +194,8 @@ const productPageCartButton = document.getElementById(
 productPageCartButton?.addEventListener("click", () => {
   cart.push(currentProduct);
   console.log(cart);
-  cartHtml()
+  cartHtml();
+  cartHtmlForCheckout();
 });
 
 createProductsHtml();
