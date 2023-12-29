@@ -156,6 +156,17 @@ const cartHtml = () =>{
     productContainer.appendChild(removeButton);
 
     cartContainer?.appendChild(productContainer);
+
+    addButton.addEventListener("click",() => {
+cart.push(products[i])
+console.log(cart)
+  cartHtml()
+    })
+    removeButton.addEventListener("click",() => {
+cart.splice(i, 1)
+console.log(cart)
+  cartHtml()
+    })
   }
   document.getElementById("cart")?.appendChild(totalPrice)
 
@@ -196,6 +207,18 @@ const cartHtmlForCheckout = () =>{
     productContainer.appendChild(removeButton);
 
     cartInCheckout?.appendChild(productContainer);
+    
+    addButton.addEventListener("click",() => {
+      cart.push(products[i])
+      console.log(cart)
+      cartHtmlForCheckout()
+          })
+          removeButton.addEventListener("click",() => {
+      cart.splice(i, 1)
+      console.log(cart)
+     
+        cartHtmlForCheckout()
+          })
   }
   document.getElementById("cart-checkout")?.appendChild(totalPriceInCheckout)
 
