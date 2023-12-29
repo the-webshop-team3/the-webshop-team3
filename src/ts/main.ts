@@ -141,12 +141,12 @@ const cartHtml = () =>{
     const removeButton = document.createElement("button")
     const articleNumber = document.createElement('p')
 
-    productTitle.innerHTML = products[i].title;
-    productImage.setAttribute('src', products[i].imageUrl);
-    productPrice.innerHTML = products[i].price.toString() + " kr";
+    productTitle.innerHTML = cart[i].title;
+    productImage.setAttribute('src', cart[i].imageUrl);
+    productPrice.innerHTML = cart[i].price.toString() + " kr";
     addButton.innerHTML = '+';
     removeButton.innerHTML = '-';
-    articleNumber.innerHTML = "Art.nr: " + products[i].id;
+    articleNumber.innerHTML = "Art.nr: " + cart[i].id;
 
     productContainer.appendChild(productTitle);
     productContainer.appendChild(productImage);
@@ -164,8 +164,8 @@ cartHtml()
 
 const cartHtmlForCheckout = () =>{
   const cartInCheckout = document.querySelector("#checkout-cart-items")
-  const TotalPriceInCheckout = document.createElement("p")
-  TotalPriceInCheckout.innerHTML = totalPrice.toString();
+  let totalPriceInCheckout = document.createElement("p")
+  totalPriceInCheckout.innerHTML = totalPrice.toString();
 
   if (cartInCheckout) {
     cartInCheckout.innerHTML = ""
@@ -181,12 +181,12 @@ const cartHtmlForCheckout = () =>{
     const articleNumber = document.createElement('p')
 
 
-    productTitle.innerHTML = products[i].title;
-    productImage.setAttribute('src', products[i].imageUrl);
-    productPrice.innerHTML = products[i].price.toString() + " kr";
+    productTitle.innerHTML = cart[i].title;
+    productImage.setAttribute('src', cart[i].imageUrl);
+    productPrice.innerHTML = cart[i].price.toString() + " kr";
     addButton.innerHTML = '+';
     removeButton.innerHTML = '-';
-    articleNumber.innerHTML = "Art.nr: " + products[i].id;
+    articleNumber.innerHTML = "Art.nr: " + cart[i].id;
 
     productContainer.appendChild(productTitle);
     productContainer.appendChild(productImage);
@@ -197,7 +197,7 @@ const cartHtmlForCheckout = () =>{
 
     cartInCheckout?.appendChild(productContainer);
   }
-  document.getElementById("cart-checkout")?.appendChild(TotalPriceInCheckout)
+  document.getElementById("cart-checkout")?.appendChild(totalPriceInCheckout)
 
 }
 cartHtmlForCheckout()
@@ -207,6 +207,7 @@ const productPageCartButton = document.getElementById(
 );
 productPageCartButton?.addEventListener("click", () => {
   cart.push(currentProduct);
+  console.log(currentProduct)
 
   console.log(cart);
   totalPrice += currentProduct.price; 
