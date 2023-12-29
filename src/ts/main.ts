@@ -52,9 +52,8 @@ const products = [
   ),
 ];
 
-
 const cart: Product[] = [];
-let totalPrice:number = 0;
+let totalPrice: number = 0;
 
 console.log(products);
 let currentProduct: Product;
@@ -87,17 +86,15 @@ const createProductsHtml = () => {
       .querySelector(".main-wrapper__products")
       ?.appendChild(productContainer);
 
-    
     addToCartButton.addEventListener("click", () => {
       cart.push(products[i]);
-      totalPrice += products[i].price; 
+      totalPrice += products[i].price;
       console.log(cart);
-  console.log(totalPrice)
+      console.log(totalPrice);
 
       cartHtml();
       cartHtmlForCheckout();
     });
-    
 
     productContainer.addEventListener("click", () => {
       const productPage = document.querySelector(".main-wrapper__product-page");
@@ -124,28 +121,28 @@ const createProductsHtml = () => {
     });
   }
 };
-const cartHtml = () =>{
+const cartHtml = () => {
   const cartContainer = document.querySelector("#cart-cart-items");
-  const totalPrice = document.createElement("p")
-  totalPrice.innerHTML = totalPrice.toString();
+  const totalPriceTag = document.createElement("p");
+  totalPriceTag.innerHTML = "Summa: " + totalPrice.toString() + " kr";
 
   if (cartContainer) {
     cartContainer.innerHTML = "";
   }
-  for(let i = 0; i < cart.length; i++){
-    const productContainer = document.createElement("div")
-    const productTitle = document.createElement("h3")
-    const productImage = document.createElement("img")
-    const productPrice = document.createElement("p")
-    const addButton = document.createElement("button")
-    const removeButton = document.createElement("button")
-    const articleNumber = document.createElement('p')
+  for (let i = 0; i < cart.length; i++) {
+    const productContainer = document.createElement("div");
+    const productTitle = document.createElement("h3");
+    const productImage = document.createElement("img");
+    const productPrice = document.createElement("p");
+    const addButton = document.createElement("button");
+    const removeButton = document.createElement("button");
+    const articleNumber = document.createElement("p");
 
     productTitle.innerHTML = cart[i].title;
-    productImage.setAttribute('src', cart[i].imageUrl);
+    productImage.setAttribute("src", cart[i].imageUrl);
     productPrice.innerHTML = cart[i].price.toString() + " kr";
-    addButton.innerHTML = '+';
-    removeButton.innerHTML = '-';
+    addButton.innerHTML = "+";
+    removeButton.innerHTML = "-";
     articleNumber.innerHTML = "Art.nr: " + cart[i].id;
 
     productContainer.appendChild(productTitle);
@@ -157,46 +154,53 @@ const cartHtml = () =>{
 
     cartContainer?.appendChild(productContainer);
 
-    addButton.addEventListener("click",() => {
-cart.push(products[i])
-console.log(cart)
-  cartHtml()
-    })
-    removeButton.addEventListener("click",() => {
-cart.splice(i, 1)
-console.log(cart)
-  cartHtml()
-    })
+    addButton.addEventListener("click", () => {
+      cart.push(cart[i]);
+      totalPrice += cart[i].price;
+      console.log(cart);
+      cartHtml();
+    });
+    removeButton.addEventListener("click", () => {
+      totalPrice -= cart[i].price;
+      cart.splice(i, 1);
+      console.log(totalPrice)
+      console.log(products[i].price)
+      console.log(totalPrice)
+    
+      console.log(cart);
+
+      cartHtml();
+    });
   }
-  document.getElementById("cart")?.appendChild(totalPrice)
+  document.getElementById("cart-cart-items")?.appendChild(totalPriceTag);
+};
+cartHtml();
 
-}
-cartHtml()
-
-const cartHtmlForCheckout = () =>{
-  const cartInCheckout = document.querySelector("#checkout-cart-items")
-  let totalPriceInCheckout = document.createElement("p")
-  totalPriceInCheckout.innerHTML = totalPrice.toString();
+const cartHtmlForCheckout = () => {
+  const cartInCheckout = document.querySelector("#checkout-cart-items");
+  let totalPriceInCheckout = document.getElementById("total-price-checkout");
+  if (totalPriceInCheckout) {
+    totalPriceInCheckout.innerHTML = "Summa: " + totalPrice.toString() + " kr";
+  }
 
   if (cartInCheckout) {
-    cartInCheckout.innerHTML = ""
+    cartInCheckout.innerHTML = "";
   }
-  
-  for(let i = 0; i < cart.length; i++){
-    const productContainer = document.createElement("div")
-    const productTitle = document.createElement("h3")
-    const productImage = document.createElement("img")
-    const productPrice = document.createElement("p")
-    const addButton = document.createElement("button")
-    const removeButton = document.createElement("button")
-    const articleNumber = document.createElement('p')
 
+  for (let i = 0; i < cart.length; i++) {
+    const productContainer = document.createElement("div");
+    const productTitle = document.createElement("h3");
+    const productImage = document.createElement("img");
+    const productPrice = document.createElement("p");
+    const addButton = document.createElement("button");
+    const removeButton = document.createElement("button");
+    const articleNumber = document.createElement("p");
 
     productTitle.innerHTML = cart[i].title;
-    productImage.setAttribute('src', cart[i].imageUrl);
+    productImage.setAttribute("src", cart[i].imageUrl);
     productPrice.innerHTML = cart[i].price.toString() + " kr";
-    addButton.innerHTML = '+';
-    removeButton.innerHTML = '-';
+    addButton.innerHTML = "+";
+    removeButton.innerHTML = "-";
     articleNumber.innerHTML = "Art.nr: " + cart[i].id;
 
     productContainer.appendChild(productTitle);
@@ -207,34 +211,38 @@ const cartHtmlForCheckout = () =>{
     productContainer.appendChild(removeButton);
 
     cartInCheckout?.appendChild(productContainer);
-    
-    addButton.addEventListener("click",() => {
-      cart.push(products[i])
-      console.log(cart)
-      cartHtmlForCheckout()
-          })
-          removeButton.addEventListener("click",() => {
-      cart.splice(i, 1)
-      console.log(cart)
-     
-        cartHtmlForCheckout()
-          })
-  }
-  document.getElementById("cart-checkout")?.appendChild(totalPriceInCheckout)
 
-}
-cartHtmlForCheckout()
+    addButton.addEventListener("click", () => {
+      cart.push(cart[i]);
+      totalPrice += cart[i].price;
+      console.log(cart);
+      cartHtmlForCheckout();
+    });
+    removeButton.addEventListener("click", () => {
+      totalPrice -= cart[i].price;
+      cart.splice(i, 1);
+      console.log(totalPrice)
+      console.log(products[i].price)
+      console.log(totalPrice)
+    
+      console.log(cart);
+
+      cartHtmlForCheckout();
+    });
+  }
+};
+cartHtmlForCheckout();
 
 const productPageCartButton = document.getElementById(
   "product-page-cart-button"
 );
 productPageCartButton?.addEventListener("click", () => {
   cart.push(currentProduct);
-  console.log(currentProduct)
+  console.log(currentProduct);
 
   console.log(cart);
-  totalPrice += currentProduct.price; 
-  console.log(totalPrice)
+  totalPrice += currentProduct.price;
+  console.log(totalPrice);
 
   cartHtml();
   cartHtmlForCheckout();
