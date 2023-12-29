@@ -1,4 +1,5 @@
 import "./../scss/style.scss";
+import { closePage, openPage } from "./functions";
 import { Product } from "./models/Product";
 
 const products = [
@@ -57,6 +58,7 @@ let totalPrice: number = 0;
 
 console.log(products);
 let currentProduct: Product;
+
 const createProductsHtml = () => {
   for (let i = 0; i < products.length; i++) {
     const productContainer = document.createElement("div");
@@ -121,6 +123,7 @@ const createProductsHtml = () => {
     });
   }
 };
+
 const cartHtml = () => {
   const cartContainer = document.querySelector("#cart-cart-items");
   const totalPriceTag = document.createElement("p");
@@ -284,17 +287,7 @@ function showPurchaseModal() {
   });
 }
 
-//funktioner för att visa sidorna när man öppnar och gömma sidorna när man stänger
-function openPage(theButton: HTMLButtonElement, thePage: HTMLElement) {
-  theButton.addEventListener("click", () => {
-    thePage.classList.add("--active");
-  });
-}
-function closePage(theButton: HTMLButtonElement, thePage: HTMLElement) {
-  theButton.addEventListener("click", () => {
-    thePage.classList.remove("--active");
-  });
-}
+
 
 //öppna och stäng varukorg
 const openCartButton = document.querySelector(
