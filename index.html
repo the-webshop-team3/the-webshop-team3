@@ -8,55 +8,74 @@
     <title>Sell it or buy it?</title>
   </head>
   <body>
-
     <header class="header">
       <h1 class="header__logo">Logga</h1>
     </header>
 
-    <main id="main" class="main-wrapper">
-      <button class="main-wrapper__cart-button">Öppna varukorg</button>
-      <section class="main-wrapper__products">
-        <!-- <div>
-    <h3></h3>
-    <img>
-    <p>Pris</p>
-    <button>Köp mig</button>
-  </div> -->
+    <main id="main" class="l-wrapper">
+      <button class="c-button" id="main-cart-button">Öppna varukorg</button>
+      <ul class="l-list"></ul>
+
+      <section class="main-wrapper__product-page">
+        <h2 id="product-page-title" class="main-wrapper__product-page__title">
+          Produkt
+        </h2>
+        <button
+          id="product-page-close-button"
+          class="main-wrapper__product-page__close-button"
+        >
+          Stäng
+        </button>
+        <img
+          id="product-page-image"
+          class="main-wrapper__product-page__image"
+        />
+        <p id="product-page-info" class="main-wrapper__product-page__info">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
+          delectus saepe neque minus explicabo eius nihil, placeat, eos quas,
+          amet fuga dolores doloremque quisquam necessitatibus dolorem. Eos
+          minus accusantium consequuntur.
+        </p>
+        <p
+          id="product-page-price"
+          class="main-wrapper__product-page__price"
+        ></p>
+        <button id="product-page-cart-button">Lägg i varukorg</button>
       </section>
-<p>Main</p>
 
-<section class="main-wrapper__product-page">
-  <h2 id="product-page-title" class="main-wrapper__product-page__title">Produkt</h2>
-  <button id="product-page-close-button" class="main-wrapper__product-page__close-button">Stäng</button>
-  <img id="product-page-image" class="main-wrapper__product-page__image">
-  <p id="product-page-info" class="main-wrapper__product-page__info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi delectus saepe neque minus explicabo eius nihil, placeat, eos quas, amet fuga dolores doloremque quisquam necessitatibus dolorem. Eos minus accusantium consequuntur.</p>
-  <p id="product-page-price" class="main-wrapper__product-page__price"></p>
-  <button id="product-page-cart-button">Lägg i varukorg</button>
-</section>
+      <section class="main-wrapper__checkout">
+        <h2 id="checkout-title" class="main-wrapper__checkout__title">Kassa</h2>
+        <button
+          id="checkout-close-button"
+          class="main-wrapper__checkout__close-button"
+        >
+          stäng
+        </button>
+        <section class="cart--checkout" id="cart-checkout">
+          <h3 class="cart__heading">Varukorg</h3>
+          <section id="checkout-cart-items" class="cart__items"></section>
+          <p id="total-price-checkout"></p>
+        </section>
 
-<section class="main-wrapper__checkout">
-  <h2 id="checkout-title" class="main-wrapper__checkout__title">Kassa</h2>
-  <button id="checkout-close-button" class="main-wrapper__checkout__close-button">stäng</button>
-  <section class="cart--checkout" id="cart-checkout">
-    <h3 class="cart__heading">Varukorg</h3>
-    <section id="checkout-cart-items" class="cart__items"></section>
-    <p id="total-price-checkout"></p>
-  </section>
-
-  <form>
-    <label for="fullname">Namn</label>
-    <input type="text" name="fullname" id="fullname">
-    <label for="address">Adress</label>
-    <input type="text" name="address" id="address">
-    <label for="zipcode">Postnummer</label>
-      <input type="text" name="zipcode" id="zipcode">
-    <label for="email">E-mail</label>
-      <input type="email" name="email" id="email">
-    <label for="tel">Tel</label>
-      <input type="tel" pattern=" [0-9]{3}-[0-9]{3}-[0-9]{4}" name="tel" id="tel">
-      <button id="modalButton">Genomför köp</button>
-    </form>
-</section>
+        <form>
+          <label for="fullname">Namn</label>
+          <input type="text" name="fullname" id="fullname" />
+          <label for="address">Adress</label>
+          <input type="text" name="address" id="address" />
+          <label for="zipcode">Postnummer</label>
+          <input type="text" name="zipcode" id="zipcode" />
+          <label for="email">E-mail</label>
+          <input type="email" name="email" id="email" />
+          <label for="tel">Tel</label>
+          <input
+            type="tel"
+            pattern=" [0-9]{3}-[0-9]{3}-[0-9]{4}"
+            name="tel"
+            id="tel"
+          />
+          <button id="modalButton">Genomför köp</button>
+        </form>
+      </section>
     </main>
 
     <aside>
@@ -67,15 +86,15 @@
         <button class="cart__close-button">Stäng</button>
       </section>
     </aside>
-    
+
     <section class="modalContainer">
-    <div id="purchaseModal" class="modal">
-      <div class="modal-content">
-        <span id="closeModalButton" class="close">&times;</span>
-        <p>Tack för ditt köp! &#x1F603;</p>
+      <div id="purchaseModal" class="modal">
+        <div class="modal-content">
+          <span id="closeModalButton" class="close">&times;</span>
+          <p>Tack för ditt köp! &#x1F603;</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
     <footer class="footer">
       <p class="footer__copyright">&copy; grupp3 2024</p>

@@ -61,36 +61,47 @@ let currentProduct: Product;
 
 const createProductsHtml = () => {
   for (let i = 0; i < products.length; i++) {
+    const list = document.querySelector(".l-list");
+    const listItem = document.createElement("li")
     const productContainer = document.createElement("div");
+    const productHeader = document.createElement("div")
     const productTitle = document.createElement("h2");
+    const productBody = document.createElement("div")
     const productImage = document.createElement("img");
     const productPrice = document.createElement("p");
-    const productID = document.createElement("p");
+    const productId = document.createElement("p");
     const productSize = document.createElement("p");
     const addToCartButton = document.createElement("button");
-    
 
     productTitle.innerHTML = products[i].title;
     productImage.innerHTML = products[i].imageUrl;
     productSize.innerHTML = products[i].size;
     productPrice.innerHTML = products[i].price.toString();
     productImage.setAttribute("src", products[i].imageUrl);
-    productID.innerHTML = "Art.nr: " + products[i].id;
+    productId.innerHTML = "Art.nr: " + products[i].id;
     addToCartButton.innerHTML = "Lägg i varukorg";
 
-    productContainer.classList.add("main-wrapper__products__product-card");
+    listItem.classList.add("l-list__item")
+    productContainer.classList.add("c-card");
+    productHeader.classList.add("c-card__header")
+    productTitle.classList.add("c-card__title")
+    productBody.classList.add("c-card__body")
+    productImage.classList.add("c-card__image")
+    productPrice.classList.add("c-card__text")
+    productSize.classList.add("c-card__text")
+    productId.classList.add("c-card__text")
+    addToCartButton.classList.add("c-button", "c-button--primary")
 
-    productContainer.appendChild(productTitle);
     productContainer.appendChild(productImage);
-    productContainer.appendChild(productSize);
-    productContainer.appendChild(productPrice);
+    productContainer.appendChild(productHeader);
+    productHeader.appendChild(productTitle);
+    productContainer.appendChild(productBody)
+    productBody.appendChild(productSize);
+    productBody.appendChild(productPrice);
     /* productContainer.appendChild(addToCartButton); */
-    document
-      .querySelector(".main-wrapper__products")
-      ?.appendChild(productContainer);
-      document
-      .querySelector(".main-wrapper__products")
-      ?.appendChild(addToCartButton);
+    list?.appendChild(listItem);
+    listItem.appendChild(productContainer)
+    listItem.appendChild(addToCartButton);
 
     addToCartButton.addEventListener("click", () => {
       cart.push(products[i]);
@@ -166,20 +177,19 @@ const cartHtml = () => {
       totalPrice += cart[i].price;
       console.log(cart);
       cartHtml();
-      cartHtmlForCheckout()
+      cartHtmlForCheckout();
     });
     removeButton.addEventListener("click", () => {
       totalPrice -= cart[i].price;
       cart.splice(i, 1);
-      console.log(totalPrice)
-      console.log(products[i].price)
-      console.log(totalPrice)
-    
+      console.log(totalPrice);
+      console.log(products[i].price);
+      console.log(totalPrice);
+
       console.log(cart);
 
       cartHtml();
-      cartHtmlForCheckout()
-
+      cartHtmlForCheckout();
     });
   }
   document.getElementById("cart-cart-items")?.appendChild(totalPriceTag);
@@ -231,10 +241,10 @@ const cartHtmlForCheckout = () => {
     removeButton.addEventListener("click", () => {
       totalPrice -= cart[i].price;
       cart.splice(i, 1);
-      console.log(totalPrice)
-      console.log(products[i].price)
-      console.log(totalPrice)
-    
+      console.log(totalPrice);
+      console.log(products[i].price);
+      console.log(totalPrice);
+
       console.log(cart);
 
       cartHtmlForCheckout();
@@ -291,11 +301,9 @@ function showPurchaseModal() {
   });
 }
 
-
-
 //öppna och stäng varukorg
 const openCartButton = document.querySelector(
-  ".main-wrapper__cart-button"
+  "#main-cart-button"
 ) as HTMLButtonElement;
 const closeCartButton = document.querySelector(
   ".cart__close-button"
