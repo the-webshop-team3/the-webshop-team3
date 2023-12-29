@@ -159,6 +159,7 @@ const cartHtml = () => {
       totalPrice += cart[i].price;
       console.log(cart);
       cartHtml();
+      cartHtmlForCheckout()
     });
     removeButton.addEventListener("click", () => {
       totalPrice -= cart[i].price;
@@ -170,6 +171,8 @@ const cartHtml = () => {
       console.log(cart);
 
       cartHtml();
+      cartHtmlForCheckout()
+
     });
   }
   document.getElementById("cart-cart-items")?.appendChild(totalPriceTag);
