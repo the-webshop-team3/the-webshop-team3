@@ -68,6 +68,7 @@ const createProductsHtml = () => {
     const productID = document.createElement("p");
     const productSize = document.createElement("p");
     const addToCartButton = document.createElement("button");
+    
 
     productTitle.innerHTML = products[i].title;
     productImage.innerHTML = products[i].imageUrl;
@@ -83,10 +84,13 @@ const createProductsHtml = () => {
     productContainer.appendChild(productImage);
     productContainer.appendChild(productSize);
     productContainer.appendChild(productPrice);
-    productContainer.appendChild(addToCartButton);
+    /* productContainer.appendChild(addToCartButton); */
     document
       .querySelector(".main-wrapper__products")
       ?.appendChild(productContainer);
+      document
+      .querySelector(".main-wrapper__products")
+      ?.appendChild(addToCartButton);
 
     addToCartButton.addEventListener("click", () => {
       cart.push(products[i]);
