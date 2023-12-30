@@ -68,7 +68,6 @@ const createProductsHtml = () => {
     const productID = document.createElement("p");
     const productSize = document.createElement("p");
     const addToCartButton = document.createElement("button");
-    
 
     productTitle.innerHTML = products[i].title;
     productImage.innerHTML = products[i].imageUrl;
@@ -88,7 +87,7 @@ const createProductsHtml = () => {
     document
       .querySelector(".main-wrapper__products")
       ?.appendChild(productContainer);
-      document
+    document
       .querySelector(".main-wrapper__products")
       ?.appendChild(addToCartButton);
 
@@ -166,20 +165,19 @@ const cartHtml = () => {
       totalPrice += cart[i].price;
       console.log(cart);
       cartHtml();
-      cartHtmlForCheckout()
+      cartHtmlForCheckout();
     });
     removeButton.addEventListener("click", () => {
       totalPrice -= cart[i].price;
       cart.splice(i, 1);
-      console.log(totalPrice)
-      console.log(products[i].price)
-      console.log(totalPrice)
-    
+      console.log(totalPrice);
+      console.log(products[i].price);
+      console.log(totalPrice);
+
       console.log(cart);
 
       cartHtml();
-      cartHtmlForCheckout()
-
+      cartHtmlForCheckout();
     });
   }
   document.getElementById("cart-cart-items")?.appendChild(totalPriceTag);
@@ -231,10 +229,10 @@ const cartHtmlForCheckout = () => {
     removeButton.addEventListener("click", () => {
       totalPrice -= cart[i].price;
       cart.splice(i, 1);
-      console.log(totalPrice)
-      console.log(products[i].price)
-      console.log(totalPrice)
-    
+      console.log(totalPrice);
+      console.log(products[i].price);
+      console.log(totalPrice);
+
       console.log(cart);
 
       cartHtmlForCheckout();
@@ -278,6 +276,9 @@ function showPurchaseModal() {
   closeModalButton.addEventListener("click", () => {
     modal.style.display = "none";
 
+    //nollställer totalpriset efter genomfört köp
+    totalPrice = 0;
+
     //tömmer cart arrayen och uppdaterar html
     cart.splice(0, cart.length);
     cartHtml();
@@ -290,8 +291,6 @@ function showPurchaseModal() {
     window.scrollTo(0, 0);
   });
 }
-
-
 
 //öppna och stäng varukorg
 const openCartButton = document.querySelector(
