@@ -62,11 +62,11 @@ let currentProduct: Product;
 const createProductsHtml = () => {
   for (let i = 0; i < products.length; i++) {
     const list = document.querySelector(".l-list");
-    const listItem = document.createElement("li")
+    const listItem = document.createElement("li");
     const productContainer = document.createElement("div");
-    const productHeader = document.createElement("div")
+    const productHeader = document.createElement("div");
     const productTitle = document.createElement("h2");
-    const productBody = document.createElement("div")
+    const productBody = document.createElement("div");
     const productImage = document.createElement("img");
     const productPrice = document.createElement("p");
     const productId = document.createElement("p");
@@ -81,26 +81,26 @@ const createProductsHtml = () => {
     productId.innerHTML = "Art.nr: " + products[i].id;
     addToCartButton.innerHTML = "Lägg i varukorg";
 
-    listItem.classList.add("l-list__item")
+    listItem.classList.add("l-list__item");
     productContainer.classList.add("c-card");
-    productHeader.classList.add("c-card__header")
-    productTitle.classList.add("c-card__title")
-    productBody.classList.add("c-card__body")
-    productImage.classList.add("c-card__image")
-    productPrice.classList.add("c-card__text")
-    productSize.classList.add("c-card__text")
-    productId.classList.add("c-card__text")
-    addToCartButton.classList.add("c-button", "c-button--primary")
+    productHeader.classList.add("c-card__header");
+    productTitle.classList.add("c-card__title");
+    productBody.classList.add("c-card__body");
+    productImage.classList.add("c-card__image");
+    productPrice.classList.add("c-card__price");
+    productSize.classList.add("c-card__attribute");
+    productId.classList.add("c-card__text");
+    addToCartButton.classList.add("c-button", "c-button--primary");
 
     productContainer.appendChild(productImage);
     productContainer.appendChild(productHeader);
     productHeader.appendChild(productTitle);
-    productContainer.appendChild(productBody)
+    productContainer.appendChild(productBody);
     productBody.appendChild(productSize);
     productBody.appendChild(productPrice);
     /* productContainer.appendChild(addToCartButton); */
     list?.appendChild(listItem);
-    listItem.appendChild(productContainer)
+    listItem.appendChild(productContainer);
     listItem.appendChild(addToCartButton);
 
     addToCartButton.addEventListener("click", () => {
@@ -114,7 +114,7 @@ const createProductsHtml = () => {
     });
 
     productContainer.addEventListener("click", () => {
-      const productPage = document.querySelector(".main-wrapper__product-page");
+      const productPage = document.querySelector(".c-product-page");
       const productPageTitle = document.getElementById("product-page-title");
       const productPageImage = document.getElementById("product-page-image");
       const productPageInfo = document.getElementById("product-page-info");
@@ -140,7 +140,7 @@ const createProductsHtml = () => {
 };
 
 const cartHtml = () => {
-  const cartContainer = document.querySelector("#cart-cart-items");
+  const cartContainer = document.querySelector("#cart-items");
   const totalPriceTag = document.createElement("p");
   totalPriceTag.innerHTML = "Summa: " + totalPrice.toString() + " kr";
 
@@ -148,29 +148,53 @@ const cartHtml = () => {
     cartContainer.innerHTML = "";
   }
   for (let i = 0; i < cart.length; i++) {
+    const listItem = document.createElement("li")
     const productContainer = document.createElement("div");
+    const productHeader = document.createElement("div")
     const productTitle = document.createElement("h3");
+    const imageContainer = document.createElement("figure")
     const productImage = document.createElement("img");
+    const productBody = document.createElement("div")
     const productPrice = document.createElement("p");
+    const articleNumber = document.createElement("p");
+    const productSize = document.createElement("p")
+    const cardFooter = document.createElement("div")
     const addButton = document.createElement("button");
     const removeButton = document.createElement("button");
-    const articleNumber = document.createElement("p");
+
+listItem.classList.add("l-list__item")
+productContainer.classList.add("c-card")
+productHeader.classList.add("c-card__header")
+imageContainer.classList.add("c-card__figure")
+productImage.classList.add("c-card__image")
+productBody.classList.add("c-card__body")
+productPrice.classList.add("c-card__price")
+articleNumber.classList.add("c-card__id")
+productSize.classList.add("c-card__attribute")
+cardFooter.classList.add("c-card__footer")
 
     productTitle.innerHTML = cart[i].title;
     productImage.setAttribute("src", cart[i].imageUrl);
     productPrice.innerHTML = cart[i].price.toString() + " kr";
+    productSize.innerHTML = "Storlek: " + cart[i].size;
+    articleNumber.innerHTML = "Art.nr: " + cart[i].id;
     addButton.innerHTML = "+";
     removeButton.innerHTML = "-";
-    articleNumber.innerHTML = "Art.nr: " + cart[i].id;
 
-    productContainer.appendChild(productTitle);
-    productContainer.appendChild(productImage);
-    productContainer.appendChild(productPrice);
-    productContainer.appendChild(articleNumber);
-    productContainer.appendChild(addButton);
-    productContainer.appendChild(removeButton);
+    productContainer.appendChild(productHeader);
+    productHeader.appendChild(productTitle);
+    productContainer.appendChild(imageContainer);
+    imageContainer.appendChild(productImage);
+    productContainer.appendChild(productBody)
+    productBody.appendChild(productPrice);
+    productBody.appendChild(productSize);
+    productBody.appendChild(articleNumber);
+    productContainer.appendChild(cardFooter);
+    cardFooter.appendChild(addButton);
+    cardFooter.appendChild(removeButton);
+    listItem.appendChild(productContainer)
 
-    cartContainer?.appendChild(productContainer);
+    cartContainer?.appendChild(listItem);
 
     addButton.addEventListener("click", () => {
       cart.push(cart[i]);
@@ -318,10 +342,10 @@ const openCheckoutButton = document.querySelector(
   ".cart__checkout-button"
 ) as HTMLButtonElement;
 const closeCheckoutButton = document.querySelector(
-  ".main-wrapper__checkout__close-button"
+  "#checkout-close-button"
 ) as HTMLButtonElement;
 const checkoutContainer = document.querySelector(
-  ".main-wrapper__checkout"
+  ".c-checkout"
 ) as HTMLElement;
 
 openPage(openCheckoutButton, checkoutContainer);
@@ -335,7 +359,5 @@ closeCheckoutButton.addEventListener("click", () => {
 const closeProductPageButton = document.getElementById(
   "product-page-close-button"
 ) as HTMLButtonElement;
-const productPage = document.querySelector(
-  ".main-wrapper__product-page"
-) as HTMLElement;
+const productPage = document.querySelector(".c-product-page") as HTMLElement;
 closePage(closeProductPageButton, productPage);
