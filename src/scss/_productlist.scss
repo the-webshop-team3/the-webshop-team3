@@ -1,0 +1,25 @@
+@use 'variables' as v;
+.l-list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 0.5rem;
+    align-items: center;
+    position: relative;
+    list-style-type: none;
+    padding: 1rem 2rem;
+    &__item {
+      width: 100%;
+      cursor: pointer;
+      border: 1px solid v.$secondary-color;
+      padding: 1rem 2rem;
+      position: relative;
+      .c-card {
+        img {
+          object-fit: contain;
+          width: 100%;
+        }
+      }
+    }
+  }

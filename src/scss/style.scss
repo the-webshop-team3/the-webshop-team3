@@ -1,4 +1,10 @@
 @use "variables" as v;
+@use "productlist";
+@use "mixins";
+@use "productpage";
+@use "cart";
+@use "checkout";
+@use "thankyou";
 
 * {
   padding: 0;
@@ -17,101 +23,7 @@
 
 #main {
   min-height: 70vh;
-  border: 1px solid v.$secondaryColor;
-}
-.l-list {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 0.5rem;
-  align-items: center;
-  position: relative;
-  list-style-type: none;
-  padding: 1rem 2rem;
-  &__item {
-    width: 100%;
-    cursor: pointer;
-    border: 1px solid v.$secondaryColor;
-    padding: 1rem 2rem;
-    position: relative;
-    .c-card {
-      img {
-        object-fit: contain;
-        width: 100%;
-      }
-    }
-  }
-}
-
-.cart {
-  height: 100vh;
-  width: 100vw;
-  background-color: v.$primaryColor;
-  display: none;
-  overflow: auto;
-  &--checkout {
-    height: unset;
-    min-height: 20vh;
-    display: flex !important;
-  }
-
-  button {
-    margin: 0.5rem;
-    padding: 0.5rem;
-    height: fit-content;
-  }
-}
-
-.cart.--active {
-  display: flex;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-}
-
-.c-checkout {
-  display: none;
-  position: fixed;
-  flex-direction: column;
-  align-items: center;
-  top: 0;
-  z-index: 3;
-  height: 100vh;
-  width: 100vw;
-  background-color: v.$primaryColor;
-
-  #checkout-close-button {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-  }
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  width: 70%;
-  position: relative;
-
-  input {
-    margin-bottom: 0.5rem;
-  }
-}
-
-#cart-checkout {
-  background-color: blanchedalmond;
-  overflow: auto;
-  max-height: 65vh;
-}
-#checkout-cart-items {
-  img {
-    max-height: 100px;
-  }
-}
-
-.c-checkout.--active {
-  display: flex;
+  border: 1px solid v.$secondary-color;
 }
 
 .footer {
@@ -122,64 +34,4 @@ form {
   z-index: 5;
   bottom: 1rem;
   right: 1rem;
-}
-.c-product-page {
-  height: 100vh;
-  width: 100vw;
-  background: white;
-  display: none;
-  padding: 1rem;
-  img {
-    height: 400px;
-  }
-
-  .c-product-page__close-button {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-  }
-}
-
-.c-product-page.--active {
-  display: block;
-  position: fixed;
-  top: 0;
-}
-
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 6;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
-  padding-top: 5.3rem;
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: 6rem auto;
-  padding: 2rem;
-  width: 30vw;
-  text-align: center;
-  font-size: 1.5rem;
-}
-
-.close {
-  display: flex;
-  justify-content: end;
-  color: #aaa;
-  font-size: 2rem;
-  font-weight: bold;
-
-  &.close:hover,
-  &.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
 }
