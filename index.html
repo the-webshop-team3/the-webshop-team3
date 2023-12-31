@@ -4,13 +4,16 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"
+    />
     <script type="module" src="/src/ts/main.ts" defer></script>
     <title>Sell it or buy it?</title>
   </head>
   <body>
-
     <header class="header">
-      <h1 class="header__logo">Logga</h1>
+      <h1 class="header__logo">GranGården</h1>
     </header>
 
     <main id="main" class="main-wrapper">
@@ -23,40 +26,67 @@
     <button>Köp mig</button>
   </div> -->
       </section>
-<p>Main</p>
 
-<section class="main-wrapper__product-page">
-  <h2 id="product-page-title" class="main-wrapper__product-page__title">Produkt</h2>
-  <button id="product-page-close-button" class="main-wrapper__product-page__close-button">Stäng</button>
-  <img id="product-page-image" class="main-wrapper__product-page__image">
-  <p id="product-page-info" class="main-wrapper__product-page__info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi delectus saepe neque minus explicabo eius nihil, placeat, eos quas, amet fuga dolores doloremque quisquam necessitatibus dolorem. Eos minus accusantium consequuntur.</p>
-  <p id="product-page-price" class="main-wrapper__product-page__price"></p>
-  <button id="product-page-cart-button">Lägg i varukorg</button>
-</section>
+      <section class="main-wrapper__product-page">
+        <h2 id="product-page-title" class="main-wrapper__product-page__title">
+          Produkt
+        </h2>
+        <button
+          id="product-page-close-button"
+          class="main-wrapper__product-page__close-button"
+        >
+          Stäng
+        </button>
+        <img
+          id="product-page-image"
+          class="main-wrapper__product-page__image"
+        />
+        <p id="product-page-info" class="main-wrapper__product-page__info">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
+          delectus saepe neque minus explicabo eius nihil, placeat, eos quas,
+          amet fuga dolores doloremque quisquam necessitatibus dolorem. Eos
+          minus accusantium consequuntur.
+        </p>
+        <p
+          id="product-page-price"
+          class="main-wrapper__product-page__price"
+        ></p>
+        <button id="product-page-cart-button">Lägg i varukorg</button>
+      </section>
 
-<section class="main-wrapper__checkout">
-  <h2 id="checkout-title" class="main-wrapper__checkout__title">Kassa</h2>
-  <button id="checkout-close-button" class="main-wrapper__checkout__close-button">stäng</button>
-  <section class="cart--checkout" id="cart-checkout">
-    <h3 class="cart__heading">Varukorg</h3>
-    <section id="checkout-cart-items" class="cart__items"></section>
-    <p id="total-price-checkout"></p>
-  </section>
+      <section class="main-wrapper__checkout">
+        <h2 id="checkout-title" class="main-wrapper__checkout__title">Kassa</h2>
+        <button
+          id="checkout-close-button"
+          class="main-wrapper__checkout__close-button"
+        >
+          stäng
+        </button>
+        <section class="cart--checkout" id="cart-checkout">
+          <h3 class="cart__heading">Varukorg</h3>
+          <section id="checkout-cart-items" class="cart__items"></section>
+          <p id="total-price-checkout"></p>
+        </section>
 
-  <form>
-    <label for="fullname">Namn</label>
-    <input type="text" name="fullname" id="fullname">
-    <label for="address">Adress</label>
-    <input type="text" name="address" id="address">
-    <label for="zipcode">Postnummer</label>
-      <input type="text" name="zipcode" id="zipcode">
-    <label for="email">E-mail</label>
-      <input type="email" name="email" id="email">
-    <label for="tel">Tel</label>
-      <input type="tel" pattern=" [0-9]{3}-[0-9]{3}-[0-9]{4}" name="tel" id="tel">
-      <button id="modalButton">Genomför köp</button>
-    </form>
-</section>
+        <form>
+          <label for="fullname">Namn</label>
+          <input type="text" name="fullname" id="fullname" />
+          <label for="address">Adress</label>
+          <input type="text" name="address" id="address" />
+          <label for="zipcode">Postnummer</label>
+          <input type="text" name="zipcode" id="zipcode" />
+          <label for="email">E-mail</label>
+          <input type="email" name="email" id="email" />
+          <label for="tel">Tel</label>
+          <input
+            type="tel"
+            pattern=" [0-9]{3}-[0-9]{3}-[0-9]{4}"
+            name="tel"
+            id="tel"
+          />
+          <button id="modalButton">Genomför köp</button>
+        </form>
+      </section>
     </main>
 
     <aside>
@@ -67,18 +97,45 @@
         <button class="cart__close-button">Stäng</button>
       </section>
     </aside>
-    
+
     <section class="modalContainer">
-    <div id="purchaseModal" class="modal">
-      <div class="modal-content">
-        <span id="closeModalButton" class="close">&times;</span>
-        <p>Tack för ditt köp! &#x1F603;</p>
+      <div id="purchaseModal" class="modal">
+        <div class="modal-content">
+          <span id="closeModalButton" class="close">&times;</span>
+          <p>Tack för ditt köp! &#x1F603;</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
     <footer class="footer">
-      <p class="footer__copyright">&copy; grupp3 2024</p>
+      <section class="footer__content">
+        <div class="footer__content__info">
+          <div class="footer__content__info__contact">
+            <h3>Kontakt</h3>
+            <p>070 174 06 28</p>
+            <h3>Adress</h3>
+            <p>Barrvägen 24</p>
+            <p>921 99, Granträsk</p>
+          </div>
+
+          <div class="footer__content__info__media">
+            <i class="bi bi-instagram"></i>
+            <i class="bi bi-facebook"></i>
+          </div>
+        </div>
+
+        <div class="footer__content__about">
+          <h3>Om oss</h3>
+          <p>
+            Välkommen till GranGården, ditt ultimata mål för julgranar i alla
+            dess former! Vi tror på att varje gran förtjänar ett hem, oavsett om
+            den är liten och busig eller stor och ståtlig. Vår passion är att
+            matcha varje kund med den perfekta granen för deras unika behov och
+            smak.
+          </p>
+        </div>
+      </section>
+      <p class="footer__copyright">&copy; Grupp3 2024</p>
     </footer>
   </body>
 </html>
