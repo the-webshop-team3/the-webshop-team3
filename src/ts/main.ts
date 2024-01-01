@@ -172,6 +172,7 @@ const cartHtml = () => {
     const productSize = document.createElement("p")
     const cardFooter = document.createElement("div")
     const addButton = document.createElement("button");
+    const quantityTag = document.createElement("span")
     const removeButton = document.createElement("button");
 
 listItem.classList.add("l-list__item")
@@ -191,6 +192,7 @@ cardFooter.classList.add("c-card__footer")
     productSize.innerHTML = "Storlek: " + cart[i].size;
     articleNumber.innerHTML = "Art.nr: " + cart[i].id;
     addButton.innerHTML = "+";
+    quantityTag.innerHTML = cart[i].quantity.toString();
     removeButton.innerHTML = "-";
 
     productContainer.appendChild(productHeader);
@@ -203,6 +205,7 @@ cardFooter.classList.add("c-card__footer")
     productBody.appendChild(articleNumber);
     productContainer.appendChild(cardFooter);
     cardFooter.appendChild(addButton);
+    cardFooter.appendChild(quantityTag)
     cardFooter.appendChild(removeButton);
     listItem.appendChild(productContainer)
 
@@ -256,6 +259,7 @@ const cartHtmlForCheckout = () => {
     const productImage = document.createElement("img");
     const productPrice = document.createElement("p");
     const addButton = document.createElement("button");
+    const quantityTag = document.createElement("span")
     const removeButton = document.createElement("button");
     const articleNumber = document.createElement("p");
 
@@ -263,6 +267,7 @@ const cartHtmlForCheckout = () => {
     productImage.setAttribute("src", cart[i].imageUrl);
     productPrice.innerHTML = cart[i].price.toString() + " kr";
     addButton.innerHTML = "+";
+    quantityTag.innerHTML = cart[i].quantity.toString();
     removeButton.innerHTML = "-";
     articleNumber.innerHTML = "Art.nr: " + cart[i].id;
 
@@ -271,6 +276,7 @@ const cartHtmlForCheckout = () => {
     productContainer.appendChild(productPrice);
     productContainer.appendChild(articleNumber);
     productContainer.appendChild(addButton);
+    productContainer.appendChild(quantityTag)
     productContainer.appendChild(removeButton);
 
     cartInCheckout?.appendChild(productContainer);
