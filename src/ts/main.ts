@@ -76,7 +76,7 @@ const createProductsHtml = () => {
     productTitle.innerHTML = products[i].title;
     productImage.innerHTML = products[i].imageUrl;
     productSize.innerHTML = products[i].size;
-    productPrice.innerHTML = products[i].price.toString();
+    productPrice.innerHTML = `${products[i].price.toString()} kr`; //-----
     productImage.setAttribute("src", products[i].imageUrl);
     productId.innerHTML = "Art.nr: " + products[i].id;
     addToCartButton.innerHTML = "Lägg i varukorg";
