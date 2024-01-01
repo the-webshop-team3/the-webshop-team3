@@ -1,0 +1,23 @@
+
+.c-product-page {
+    height: 100vh;
+    width: 100vw;
+    background: white;
+    display: none;
+    padding: 1rem;
+    img {
+      height: 400px;
+    }
+  
+    .c-product-page__close-button {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+    }
+  }
+  
+  .c-product-page.--active {
+    display: block;
+    position: fixed;
+    top: 0;
+  }

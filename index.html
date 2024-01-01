@@ -16,49 +16,40 @@
       <h1 class="header__logo">GranGården</h1>
     </header>
 
-    <main id="main" class="main-wrapper">
-      <button class="main-wrapper__cart-button">Öppna varukorg</button>
-      <section class="main-wrapper__products">
-        <!-- <div>
-    <h3></h3>
-    <img>
-    <p>Pris</p>
-    <button>Köp mig</button>
-  </div> -->
-      </section>
+    <main id="main" class="l-wrapper">
+      <button class="c-button c-button--secondary" id="main-cart-button">Öppna varukorg</button>
+      <ul class="l-list"></ul>
 
-      <section class="main-wrapper__product-page">
-        <h2 id="product-page-title" class="main-wrapper__product-page__title">
-          Produkt
-        </h2>
+      <section class="c-product-page">
         <button
+          class="c-product-page__close-button"
           id="product-page-close-button"
-          class="main-wrapper__product-page__close-button"
         >
           Stäng
         </button>
-        <img
-          id="product-page-image"
-          class="main-wrapper__product-page__image"
-        />
-        <p id="product-page-info" class="main-wrapper__product-page__info">
+        <figure class="c-product-page__figure">
+        <img class="c-product-page__image" id="product-page-image" />
+      </figure>
+      <div class="c-product-page__header">
+        <h2 class="c-product-page__title" id="product-page-title">Produkt</h2>
+      </div>
+        <p class="c-product-page__info" id="product-page-info">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
           delectus saepe neque minus explicabo eius nihil, placeat, eos quas,
           amet fuga dolores doloremque quisquam necessitatibus dolorem. Eos
           minus accusantium consequuntur.
         </p>
-        <p
-          id="product-page-price"
-          class="main-wrapper__product-page__price"
-        ></p>
-        <button id="product-page-cart-button">Lägg i varukorg</button>
+        <p class="c-product-page__price" id="product-page-price"></p>
+        <button 
+        class="c-button c-button--primary"
+        id="product-page-cart-button">Lägg i varukorg</button>
       </section>
 
-      <section class="main-wrapper__checkout">
-        <h2 id="checkout-title" class="main-wrapper__checkout__title">Kassa</h2>
+      <section class="c-checkout">
+        <h2 class="c-checkout__title" id="checkout-title">Kassa</h2>
         <button
+          class="c-button c-button--primary"
           id="checkout-close-button"
-          class="main-wrapper__checkout__close-button"
         >
           stäng
         </button>
@@ -91,8 +82,10 @@
 
     <aside>
       <section class="cart" id="cart">
-        <h2 class="cart__heading">Varukorg</h2>
-        <section id="cart-cart-items" class="cart__items"></section>
+        <div class="cart__header">
+        <h2 class="cart__title">Varukorg</h2>
+      </div>
+        <ul class="l-list" id="cart-items"></ul>
         <button class="cart__checkout-button">Till kassan</button>
         <button class="cart__close-button">Stäng</button>
       </section>
