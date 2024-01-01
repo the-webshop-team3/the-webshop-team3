@@ -343,8 +343,30 @@ buyButton.addEventListener("click", handlePurchase);
 
 function handlePurchase(event: Event) {
   event.preventDefault();
-  showPurchaseModal();
+  //---------
+  if (validateForm()) {
+    showPurchaseModal();
+  } else {
+    alert("Fyll i hela formuläret");
+  } //---------
 }
+
+//---------
+function validateForm(): boolean {
+  const fullname = document.getElementById("fullname") as HTMLInputElement;
+  const address = document.getElementById("address") as HTMLInputElement;
+  const email = document.getElementById("email") as HTMLInputElement;
+  const zipcode = document.getElementById("zipcode") as HTMLInputElement;
+  const mobilnummer = document.getElementById("cellPhone") as HTMLInputElement;
+
+  if (fullname.value === "" || address.value === "" || email.value === "" 
+  || zipcode.value === "" || mobilnummer.value === "") {
+    return false;
+  }
+
+  return true;
+}
+//---------
 
 function showPurchaseModal() {
   const modal = document.getElementById("purchaseModal") as HTMLDivElement;

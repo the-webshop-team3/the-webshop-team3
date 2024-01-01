@@ -61,20 +61,15 @@
 
         <form>
           <label for="fullname">Namn</label>
-          <input type="text" name="fullname" id="fullname" />
+          <input type="text" name="fullname" id="fullname" required />
           <label for="address">Adress</label>
-          <input type="text" name="address" id="address"  />
+          <input type="text" name="address" id="address" required />
           <label for="zipcode">Postnummer</label>
-          <input type="text" name="zipcode" id="zipcode" />
+          <input type="text" name="zipcode" id="zipcode" required />
           <label for="email">E-mail</label>
-          <input type="email" name="email" id="email" />
-          <label for="tel">Tel</label>
-          <input
-            type="tel"
-            pattern=" [0-9]{3}-[0-9]{3}-[0-9]{4}"
-            name="tel"
-            id="tel"
-         />
+          <input type="email" name="email" id="email" required />
+          <label for="cellPhone">Tel</label>
+        <input type="tel" pattern="[0-9]{10}" name="cellPhone" id="cellPhone" required/> <!----> 
           <button id="modalButton">Genomför köp</button>
         </form>
       </section>
