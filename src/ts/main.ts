@@ -4,8 +4,8 @@ import { Product } from "./models/Product";
 
 const products = [
   new Product(
-    "Kungsgran",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7xjNHyxM5rjPWc3rV_EZYVqaG5OmAso6eFw&usqp=CAU",
+    "Rödgran",
+    "src/assets/img/red_spruce3.jpg",
     "Medium",
     499,
     "Text om gran 1",
@@ -13,31 +13,31 @@ const products = [
   ),
   new Product(
     "Rödgran",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7xjNHyxM5rjPWc3rV_EZYVqaG5OmAso6eFw&usqp=CAU",
+    "src/assets/img/resized_images/red_spruce.webp",
     "Medium",
     350,
     "Text om gran 2",
     "002"
   ),
   new Product(
-    "Kungsgran",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7xjNHyxM5rjPWc3rV_EZYVqaG5OmAso6eFw&usqp=CAU",
+    "Blågran",
+    "src/assets/img/resized_images/blue_spruce.webp",
     "Stor",
     699,
     "Text om gran 3",
     "003"
   ),
   new Product(
-    "Kungsgran",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7xjNHyxM5rjPWc3rV_EZYVqaG5OmAso6eFw&usqp=CAU",
-    "Liten",
-    350,
+    "Bosnisk tall",
+    "src/assets/img/resized_images/bosnian_pine.webp",
+    "Medel",
+    750,
     "Text om gran 4",
     "004"
   ),
   new Product(
     "Rödgran",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7xjNHyxM5rjPWc3rV_EZYVqaG5OmAso6eFw&usqp=CAU",
+    "src/assets/img/red_spruce2.jpg",
     "Liten",
     250,
     "Text om gran 5",
@@ -45,7 +45,7 @@ const products = [
   ),
   new Product(
     "Rödgran",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7xjNHyxM5rjPWc3rV_EZYVqaG5OmAso6eFw&usqp=CAU",
+    "src/assets/img/resized_images/red_spruce3.webp",
     "Stor",
     390,
     "Text om gran 6",
