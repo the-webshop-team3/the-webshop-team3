@@ -25,13 +25,13 @@
   min-height: 70vh;
   border: 1px solid v.$secondary-color;
 }
-
-.footer {
-  min-height: 30vh;
-}
 #main-cart-button {
   position: fixed;
   z-index: 5;
   bottom: 1rem;
   right: 1rem;
+}
+
+.footer {
+  min-height: 30vh;
 }
