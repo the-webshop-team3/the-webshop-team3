@@ -53,7 +53,10 @@ const products = [
   ),
 ];
 
-const cart: Product[] = [];
+const cart: Product[] = JSON.parse(
+  sessionStorage.getItem("cartItems") || JSON.stringify([])
+);
+
 let totalPrice: number = 0;
 
 console.log(products);
@@ -95,15 +98,17 @@ const createProductsHtml = () => {
     productContainer.appendChild(productImage);
     productContainer.appendChild(productSize);
     productContainer.appendChild(productPrice);
-    
+
     list?.appendChild(listItem);
     listItem.appendChild(productContainer);
     listItem.appendChild(addToCartButton);
 
     addToCartButton.addEventListener("click", () => {
-      const checkId = cart.findIndex((product) => product.id === products[i].id)
+      const checkId = cart.findIndex(
+        (product) => product.id === products[i].id
+      );
       console.log(checkId);
-      
+
       if (checkId !== -1) {
         products[i].quantity++;
         totalPrice += products[i].price;
@@ -111,18 +116,16 @@ const createProductsHtml = () => {
         console.log(totalPrice);
 
         cartHtml();
-      cartHtmlForCheckout();
-      }
-      else{
-              cart.push(products[i]);
-      totalPrice += products[i].price;
-      console.log(cart);
-      console.log(totalPrice);
+        cartHtmlForCheckout();
+      } else {
+        cart.push(products[i]);
+        totalPrice += products[i].price;
+        console.log(cart);
+        console.log(totalPrice);
 
-      cartHtml();
-      cartHtmlForCheckout();
+        cartHtml();
+        cartHtmlForCheckout();
       }
-
     });
 
     productContainer.addEventListener("click", () => {
@@ -152,6 +155,8 @@ const createProductsHtml = () => {
 };
 
 const cartHtml = () => {
+  sessionStorage.setItem("cartItems", JSON.stringify(cart));
+
   const cartContainer = document.querySelector("#cart-items");
   const totalPriceTag = document.createElement("p");
   totalPriceTag.innerHTML = "Summa: " + totalPrice.toString() + " kr";
@@ -160,31 +165,31 @@ const cartHtml = () => {
     cartContainer.innerHTML = "";
   }
   for (let i = 0; i < cart.length; i++) {
-    const listItem = document.createElement("li")
+    const listItem = document.createElement("li");
     const productContainer = document.createElement("div");
-    const productHeader = document.createElement("div")
+    const productHeader = document.createElement("div");
     const productTitle = document.createElement("h3");
-    const imageContainer = document.createElement("figure")
+    const imageContainer = document.createElement("figure");
     const productImage = document.createElement("img");
-    const productBody = document.createElement("div")
+    const productBody = document.createElement("div");
     const productPrice = document.createElement("p");
     const articleNumber = document.createElement("p");
-    const productSize = document.createElement("p")
-    const cardFooter = document.createElement("div")
+    const productSize = document.createElement("p");
+    const cardFooter = document.createElement("div");
     const addButton = document.createElement("button");
-    const quantityTag = document.createElement("span")
+    const quantityTag = document.createElement("span");
     const removeButton = document.createElement("button");
 
-listItem.classList.add("l-list__item")
-productContainer.classList.add("c-card")
-productHeader.classList.add("c-card__header")
-imageContainer.classList.add("c-card__figure")
-productImage.classList.add("c-card__image")
-productBody.classList.add("c-card__body")
-productPrice.classList.add("c-card__price")
-articleNumber.classList.add("c-card__id")
-productSize.classList.add("c-card__attribute")
-cardFooter.classList.add("c-card__footer")
+    listItem.classList.add("l-list__item");
+    productContainer.classList.add("c-card");
+    productHeader.classList.add("c-card__header");
+    imageContainer.classList.add("c-card__figure");
+    productImage.classList.add("c-card__image");
+    productBody.classList.add("c-card__body");
+    productPrice.classList.add("c-card__price");
+    articleNumber.classList.add("c-card__id");
+    productSize.classList.add("c-card__attribute");
+    cardFooter.classList.add("c-card__footer");
 
     productTitle.innerHTML = cart[i].title;
     productImage.setAttribute("src", cart[i].imageUrl);
@@ -199,21 +204,21 @@ cardFooter.classList.add("c-card__footer")
     productHeader.appendChild(productTitle);
     productContainer.appendChild(imageContainer);
     imageContainer.appendChild(productImage);
-    productContainer.appendChild(productBody)
+    productContainer.appendChild(productBody);
     productBody.appendChild(productPrice);
     productBody.appendChild(productSize);
     productBody.appendChild(articleNumber);
     productContainer.appendChild(cardFooter);
     cardFooter.appendChild(addButton);
-    cardFooter.appendChild(quantityTag)
+    cardFooter.appendChild(quantityTag);
     cardFooter.appendChild(removeButton);
-    listItem.appendChild(productContainer)
+    listItem.appendChild(productContainer);
 
     cartContainer?.appendChild(listItem);
 
     addButton.addEventListener("click", () => {
       cart[i].quantity++;
-      totalPrice += cart[i].price 
+      totalPrice += cart[i].price;
       console.log(cart);
       console.log(totalPrice);
       cartHtml();
@@ -221,21 +226,18 @@ cardFooter.classList.add("c-card__footer")
     });
     removeButton.addEventListener("click", () => {
       if (cart[i].quantity === 1) {
-        totalPrice -= cart[i].price 
-        cart.splice(i, 1)
+        totalPrice -= cart[i].price;
+        cart.splice(i, 1);
+        cartHtml();
+        cartHtmlForCheckout();
+      } else {
+        cart[i].quantity--;
+        totalPrice -= cart[i].price;
+        console.log(cart);
+        console.log(totalPrice);
         cartHtml();
         cartHtmlForCheckout();
       }
-      else{
-      cart[i].quantity--;
-      totalPrice -= cart[i].price 
-      console.log(cart);
-      console.log(totalPrice);
-      cartHtml();
-      cartHtmlForCheckout();
-    }
-
-
     });
   }
   document.getElementById("cart-items")?.appendChild(totalPriceTag);
@@ -243,6 +245,8 @@ cardFooter.classList.add("c-card__footer")
 cartHtml();
 
 const cartHtmlForCheckout = () => {
+  sessionStorage.setItem("cartItems", JSON.stringify(cart));
+
   const cartInCheckout = document.querySelector("#checkout-cart-items");
   let totalPriceInCheckout = document.getElementById("total-price-checkout");
   if (totalPriceInCheckout) {
@@ -259,7 +263,7 @@ const cartHtmlForCheckout = () => {
     const productImage = document.createElement("img");
     const productPrice = document.createElement("p");
     const addButton = document.createElement("button");
-    const quantityTag = document.createElement("span")
+    const quantityTag = document.createElement("span");
     const removeButton = document.createElement("button");
     const articleNumber = document.createElement("p");
 
@@ -276,14 +280,14 @@ const cartHtmlForCheckout = () => {
     productContainer.appendChild(productPrice);
     productContainer.appendChild(articleNumber);
     productContainer.appendChild(addButton);
-    productContainer.appendChild(quantityTag)
+    productContainer.appendChild(quantityTag);
     productContainer.appendChild(removeButton);
 
     cartInCheckout?.appendChild(productContainer);
 
     addButton.addEventListener("click", () => {
       cart[i].quantity++;
-      totalPrice += cart[i].price 
+      totalPrice += cart[i].price;
       console.log(cart);
       console.log(totalPrice);
       cartHtml();
@@ -291,19 +295,18 @@ const cartHtmlForCheckout = () => {
     });
     removeButton.addEventListener("click", () => {
       if (cart[i].quantity === 1) {
-        totalPrice -= cart[i].price 
-        cart.splice(i, 1)
+        totalPrice -= cart[i].price;
+        cart.splice(i, 1);
+        cartHtml();
+        cartHtmlForCheckout();
+      } else {
+        cart[i].quantity--;
+        totalPrice -= cart[i].price;
+        console.log(cart);
+        console.log(totalPrice);
         cartHtml();
         cartHtmlForCheckout();
       }
-      else{
-      cart[i].quantity--;
-      totalPrice -= cart[i].price 
-      console.log(cart);
-      console.log(totalPrice);
-      cartHtml();
-      cartHtmlForCheckout();
-    }
     });
   }
 };
@@ -313,9 +316,9 @@ const productPageCartButton = document.getElementById(
   "product-page-cart-button"
 );
 productPageCartButton?.addEventListener("click", () => {
-  const checkId = cart.findIndex((product) => product.id === currentProduct.id)
+  const checkId = cart.findIndex((product) => product.id === currentProduct.id);
   console.log(checkId);
-  
+
   if (checkId !== -1) {
     currentProduct.quantity++;
     totalPrice += currentProduct.price;
@@ -323,16 +326,15 @@ productPageCartButton?.addEventListener("click", () => {
     console.log(totalPrice);
 
     cartHtml();
-  cartHtmlForCheckout();
-  }
-  else{
-          cart.push(currentProduct);
-  totalPrice += currentProduct.price;
-  console.log(cart);
-  console.log(totalPrice);
+    cartHtmlForCheckout();
+  } else {
+    cart.push(currentProduct);
+    totalPrice += currentProduct.price;
+    console.log(cart);
+    console.log(totalPrice);
 
-  cartHtml();
-  cartHtmlForCheckout();
+    cartHtml();
+    cartHtmlForCheckout();
   }
 });
 
@@ -391,9 +393,7 @@ const openCheckoutButton = document.querySelector(
 const closeCheckoutButton = document.querySelector(
   "#checkout-close-button"
 ) as HTMLButtonElement;
-const checkoutContainer = document.querySelector(
-  ".c-checkout"
-) as HTMLElement;
+const checkoutContainer = document.querySelector(".c-checkout") as HTMLElement;
 
 openPage(openCheckoutButton, checkoutContainer);
 closePage(closeCheckoutButton, checkoutContainer);
