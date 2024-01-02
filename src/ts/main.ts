@@ -5,7 +5,7 @@ import { Product } from "./models/Product";
 const products = [
   new Product(
     "Rödgran",
-    "src/assets/img/red_spruce3.jpg",
+    "src/assets/img/resized_images/red_spruce3.webp",
     "Medium",
     499,
     "Text om gran 1",
@@ -37,7 +37,7 @@ const products = [
   ),
   new Product(
     "Rödgran",
-    "src/assets/img/red_spruce2.jpg",
+    "src/assets/img/resized_images/red_spruce2.webp",
     "Liten",
     250,
     "Text om gran 5",
