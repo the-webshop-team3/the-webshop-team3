@@ -9,8 +9,9 @@ $standard-value: .8rem;
 $medium: 5rem;
 $large: 4vw!important;
 
+$standard-padding: 1rem 2rem;
 $btn-padding: 0.5rem 1rem;
-$btn-padding-large: 1rem 2rem;
+$btn-padding-large: $standard-padding;
 $btn-padding-small: 0.5rem;
 $large-padding: 1vw $large;
 

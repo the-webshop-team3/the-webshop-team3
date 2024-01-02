@@ -6,14 +6,17 @@
   border: 1px solid rgba(255, 255, 255, 0.46);
 
   &--primary {
+      padding: v.$btn-padding-large;
+      color: v.$bright-text;
+      background-color: v.$button-primary;
+      font-weight: 400;
+      font-family: informapro, sans-serif;
+      width: 100%;
+      font-size: 1rem;
+    }
+    &--cta {
     width: 70%;
-  }
-  &--cta {
     padding: v.$btn-padding-large;
-    color: v.$bright-text;
-    background-color: v.$button-primary;
-    font-weight: 400;
-    font-size: 1.2rem;
-    font-family: informapro, sans-serif;
+      font-size: 1.2rem;
   }
 }
