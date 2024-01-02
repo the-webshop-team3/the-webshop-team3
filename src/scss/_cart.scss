@@ -1,27 +1,72 @@
-@use 'variables' as v;
+@use "variables" as v;
 
 .cart {
-    height: 100vh;
-    width: 100vw;
-    background-color: v.$primary-color;
-    display: none;
-    overflow: auto;
-    &--checkout {
-      height: unset;
-      min-height: 20vh;
-      display: flex !important;
-    }
-  
-    button {
-      margin: 0.5rem;
-      padding: 0.5rem;
-      height: fit-content;
-    }
+  border: solid red 1px;
+
+  height: 100vh;
+  width: 100vw;
+  z-index: 2;
+  background-color: v.$primary-color;
+  display: none;
+  overflow: auto;
+  flex-direction: column;
+  align-items: center;
+
+  &--checkout {
+    height: unset;
+    min-height: 20vh;
+    display: flex !important;
   }
-  
-  .cart.--active {
-    display: flex;
-    position: fixed;
-    top: 0;
-    bottom: 0;
+
+  button {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    height: fit-content;
   }
+}
+
+.cart.--active {
+  display: flex;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+}
+
+.cart__button-wrapper {
+  border: solid red 1px;
+  width: 80%;
+  display: flex;
+}
+
+.cart__header {
+  border: solid red 1px;
+}
+
+.l-list-cart {
+  border: solid red 1px;
+  overflow: auto;
+  height: 85%;
+  width: 70%;
+}
+
+.c-card-cart {
+  /*  border: solid red 1px; */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  align-items: center;
+
+  &__figure {
+    grid-area: 1 / 1 / 3 / 3;
+  }
+
+  &__body {
+    grid-area: 3 / 1 / 4 / 3;
+  }
+
+  &__footer {
+    grid-area: 3 / 2 / 4 / 3;
+  }
+}

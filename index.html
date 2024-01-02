@@ -17,7 +17,9 @@
     </header>
 
     <main id="main" class="l-wrapper">
-      <button class="c-button c-button--secondary" id="main-cart-button">Öppna varukorg</button>
+      <button class="c-button c-button--secondary" id="main-cart-button">
+        Öppna varukorg
+      </button>
       <ul class="l-list"></ul>
 
       <section class="c-product-page">
@@ -28,11 +30,11 @@
           Stäng
         </button>
         <figure class="c-product-page__figure">
-        <img class="c-product-page__image" id="product-page-image" />
-      </figure>
-      <div class="c-product-page__header">
-        <h2 class="c-product-page__title" id="product-page-title">Produkt</h2>
-      </div>
+          <img class="c-product-page__image" id="product-page-image" />
+        </figure>
+        <div class="c-product-page__header">
+          <h2 class="c-product-page__title" id="product-page-title">Produkt</h2>
+        </div>
         <p class="c-product-page__info" id="product-page-info">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
           delectus saepe neque minus explicabo eius nihil, placeat, eos quas,
@@ -40,17 +42,17 @@
           minus accusantium consequuntur.
         </p>
         <p class="c-product-page__price" id="product-page-price"></p>
-        <button 
-        class="c-button c-button--primary"
-        id="product-page-cart-button">Lägg i varukorg</button>
+        <button
+          class="c-button c-button--primary"
+          id="product-page-cart-button"
+        >
+          Lägg i varukorg
+        </button>
       </section>
 
       <section class="c-checkout">
         <h2 class="c-checkout__title" id="checkout-title">Kassa</h2>
-        <button
-          class="c-button c-button--primary"
-          id="checkout-close-button"
-        >
+        <button class="c-button c-button--primary" id="checkout-close-button">
           stäng
         </button>
         <section class="cart--checkout" id="cart-checkout">
@@ -63,7 +65,7 @@
           <label for="fullname">Namn</label>
           <input type="text" name="fullname" id="fullname" />
           <label for="address">Adress</label>
-          <input type="text" name="address" id="address"  />
+          <input type="text" name="address" id="address" />
           <label for="zipcode">Postnummer</label>
           <input type="text" name="zipcode" id="zipcode" />
           <label for="email">E-mail</label>
@@ -74,7 +76,7 @@
             pattern=" [0-9]{3}-[0-9]{3}-[0-9]{4}"
             name="tel"
             id="tel"
-         />
+          />
           <button id="modalButton">Genomför köp</button>
         </form>
       </section>
@@ -83,11 +85,14 @@
     <aside>
       <section class="cart" id="cart">
         <div class="cart__header">
-        <h2 class="cart__title">Varukorg</h2>
-      </div>
-        <ul class="l-list" id="cart-items"></ul>
-        <button class="cart__checkout-button">Till kassan</button>
-        <button class="cart__close-button">Stäng</button>
+          <h2 class="cart__title">Varukorg</h2>
+        </div>
+        <ul class="l-list-cart" id="cart-items"></ul>
+        <div id="cart-total-price"></div>
+        <div class="cart__button-wrapper">
+          <button class="cart__checkout-button">Till kassan</button>
+          <button class="cart__close-button">Stäng</button>
+        </div>
       </section>
     </aside>
 

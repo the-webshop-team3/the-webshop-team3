@@ -154,12 +154,11 @@ const createProductsHtml = () => {
     });
   }
 };
-
+const totalPriceTag = document.createElement("p");
 const cartHtml = () => {
   sessionStorage.setItem("cartItems", JSON.stringify(cart));
 
   const cartContainer = document.querySelector("#cart-items");
-  const totalPriceTag = document.createElement("p");
   totalPriceTag.innerHTML = "Summa: " + totalPrice.toString() + " kr";
 
   if (cartContainer) {
@@ -182,15 +181,15 @@ const cartHtml = () => {
     const removeButton = document.createElement("button");
 
     listItem.classList.add("l-list__item");
-    productContainer.classList.add("c-card");
+    productContainer.classList.add("c-card-cart");
     productHeader.classList.add("c-card__header");
-    imageContainer.classList.add("c-card__figure");
-    productImage.classList.add("c-card__image");
-    productBody.classList.add("c-card__body");
+    imageContainer.classList.add("c-card-cart__figure");
+    productImage.classList.add("c-card-cart__image");
+    productBody.classList.add("c-card-cart__body");
     productPrice.classList.add("c-card__price");
     articleNumber.classList.add("c-card__id");
     productSize.classList.add("c-card__attribute");
-    cardFooter.classList.add("c-card__footer");
+    cardFooter.classList.add("c-card-cart__footer");
 
     productTitle.innerHTML = cart[i].title;
     productImage.setAttribute("src", cart[i].imageUrl);
@@ -201,11 +200,11 @@ const cartHtml = () => {
     quantityTag.innerHTML = cart[i].quantity.toString();
     removeButton.innerHTML = "-";
 
-    productContainer.appendChild(productHeader);
-    productHeader.appendChild(productTitle);
+    /* productContainer.appendChild(productHeader); */
     productContainer.appendChild(imageContainer);
     imageContainer.appendChild(productImage);
     productContainer.appendChild(productBody);
+    productBody.appendChild(productTitle);
     productBody.appendChild(productPrice);
     productBody.appendChild(productSize);
     productBody.appendChild(articleNumber);
@@ -241,7 +240,7 @@ const cartHtml = () => {
       }
     });
   }
-  document.getElementById("cart-items")?.appendChild(totalPriceTag);
+  document.getElementById("cart-total-price")?.appendChild(totalPriceTag);
 };
 cartHtml();
 
