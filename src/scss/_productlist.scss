@@ -24,6 +24,10 @@
       }
       .c-card {
         padding: 2rem;
+        cursor: pointer;
+        &__footer{
+          margin: v.$standard-margin 0;
+        }
       }
     }
   }

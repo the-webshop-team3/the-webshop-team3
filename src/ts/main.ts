@@ -71,6 +71,7 @@ const createProductsHtml = () => {
     const productPrice = document.createElement("p");
     const productId = document.createElement("p");
     const productSize = document.createElement("p");
+    const productFooter = document.createElement("div")
     const addToCartButton = document.createElement("button");
 
     productTitle.innerHTML = products[i].title;
@@ -90,17 +91,20 @@ const createProductsHtml = () => {
     productPrice.classList.add("c-card__price");
     productSize.classList.add("c-card__attribute");
     productId.classList.add("c-card__text");
+    productFooter.classList.add("c-card__footer")
     addToCartButton.classList.add("c-button", "c-button--primary");
 
     listItem.appendChild(productImage);
     productContainer.appendChild(productHeader);
     productHeader.appendChild(productTitle);
-    productContainer.appendChild(productSize);
-    productContainer.appendChild(productPrice);
+    productContainer.appendChild(productBody)
+    productBody.appendChild(productSize);
+    productBody.appendChild(productPrice);
 
     list?.appendChild(listItem);
     listItem.appendChild(productContainer);
-    listItem.appendChild(addToCartButton);
+    productContainer.appendChild(productFooter);
+    productFooter.appendChild(addToCartButton)
 
     addToCartButton.addEventListener("click", () => {
       const checkId = cart.findIndex(
@@ -150,7 +154,8 @@ const createProductsHtml = () => {
       }
     };
     productImage.addEventListener("click", clickOnProduct);
-    productContainer.addEventListener("click", clickOnProduct);
+    productHeader.addEventListener("click", clickOnProduct);
+    productBody.addEventListener("click", clickOnProduct);
   }
 };
 
