@@ -74,7 +74,7 @@ const createProductsHtml = () => {
     const productPrice = document.createElement("p");
     const productId = document.createElement("p");
     const productSize = document.createElement("p");
-    const productFooter = document.createElement("div")
+    const productFooter = document.createElement("div");
     const addToCartButton = document.createElement("button");
 
     productTitle.innerHTML = products[i].title;
@@ -94,20 +94,20 @@ const createProductsHtml = () => {
     productPrice.classList.add("c-card__price");
     productSize.classList.add("c-card__attribute");
     productId.classList.add("c-card__text");
-    productFooter.classList.add("c-card__footer")
+    productFooter.classList.add("c-card__footer");
     addToCartButton.classList.add("c-button", "c-button--primary");
 
     listItem.appendChild(productImage);
     productContainer.appendChild(productHeader);
     productHeader.appendChild(productTitle);
-    productContainer.appendChild(productBody)
+    productContainer.appendChild(productBody);
     productBody.appendChild(productSize);
     productBody.appendChild(productPrice);
 
     list?.appendChild(listItem);
     listItem.appendChild(productContainer);
     productContainer.appendChild(productFooter);
-    productFooter.appendChild(addToCartButton)
+    productFooter.appendChild(addToCartButton);
 
     addToCartButton.addEventListener("click", () => {
       const checkId = cart.findIndex(
@@ -216,9 +216,9 @@ const cartHtml = () => {
     productBody.appendChild(productSize);
     productBody.appendChild(articleNumber);
     productContainer.appendChild(cardFooter);
-    cardFooter.appendChild(addButton);
-    cardFooter.appendChild(quantityTag);
     cardFooter.appendChild(removeButton);
+    cardFooter.appendChild(quantityTag);
+    cardFooter.appendChild(addButton);
     listItem.appendChild(productContainer);
 
     cartContainer?.appendChild(listItem);
