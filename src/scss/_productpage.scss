@@ -1,24 +1,47 @@
 @use 'variables' as v;
 
-.c-product-page {
-    height: 100vh;
-    width: 100vw;
-    background: v.$primary-color;
-    display: none;
-    padding: 1rem;
-    img {
-      height: 400px;
-    }
+.l-wrapper#wrapper-product-page{
+  display: none;
+  position: fixed;
+  top: 0;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
   
-    .c-product-page__close-button {
-      position: absolute;
-      top: 0.5rem;
-      right: 0.5rem;
-    }
+  &.--active{
+    display: flex;
+    background-color: rgba(5, 5, 5, .5);
+    backdrop-filter: blur(5px);
+  }
+}
+
+.c-product-page {
+  height: 95vh;
+  width: 95vw;
+  background: v.$primary-color;
+  display: none;
+  padding: 1rem;
+  img {
+    width: 100%;
+  }
+  &__header{
+    font-size: 2rem;
+  }
+  &__price{
+    font-size: 2rem;
+    margin: 1rem 0;
+    color: rgb(177, 1, 1);  
   }
   
-  .c-product-page.--active {
-    display: block;
-    position: fixed;
-    top: 0;
+  .c-product-page__close-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+}
+
+.c-product-page.--active {
+  display: block;
+  position: fixed;
+  top: 1rem;
   }
