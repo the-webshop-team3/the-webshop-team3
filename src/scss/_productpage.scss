@@ -1,8 +1,9 @@
+@use 'variables' as v;
 
 .c-product-page {
     height: 100vh;
     width: 100vw;
-    background: white;
+    background: v.$primary-color;
     display: none;
     padding: 1rem;
     img {
