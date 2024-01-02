@@ -2,24 +2,27 @@
 $itemwidth: 100%;
 $imgsize: 5rem;
 
-$btn-border-radius: 5px;
+$btn-border-radius: 50px;
 $expand-btn-size: 60px;
 
 $standard-value: .8rem;
 $medium: 5rem;
 $large: 4vw!important;
 
+$standard-padding: 1rem 2rem;
 $btn-padding: 0.5rem 1rem;
+$btn-padding-large: $standard-padding;
 $btn-padding-small: 0.5rem;
 $large-padding: 1vw $large;
 
 $large-width: $large;
 $small-margin: 0.5rem;
+$standard-margin: 1rem;
 $large-height: 5.4rem;
 
 $fontSizeSmall: .8rem;
 $fontSizeMedium: 1rem;
-$fontSizeLarge: 3rem;
+$fontSizeLarge: 1.5rem;
 
 $columns-1: 1fr;
 $columns-2: 1fr 1fr;
@@ -27,12 +30,12 @@ $columns-3: 1fr 1fr 1fr;
 $columns-4: 1fr 1fr 1fr 1fr;
 
 // colors
-$primary-color: rgb(215, 215, 215);
-$secondary-color: rgb(169, 169, 169);
-$third-color: rgb(85, 85, 85);
+$primary-color: antiquewhite;
+$secondary-color: rgb(255, 249, 238);
+$third-color: #1b5547;
 
 $linear-gradient: linear-gradient(45deg, #e66465, #9198e5);
-$button-primary:rgb(93, 98, 254);
+$button-primary:#1b5547;
 $bright-text: whitesmoke;
 $overlay-dark:  rgba(0, 0, 0, 0.5);
 $overlay-darker:  rgba(0, 0, 0, 0.6);

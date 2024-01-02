@@ -4,22 +4,31 @@
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-around;
-    gap: 0.5rem;
+    gap: 1rem;
     align-items: center;
     position: relative;
     list-style-type: none;
-    padding: 1rem 2rem;
+    padding: 1rem;
+    background-color: antiquewhite;
+
     &__item {
       width: 100%;
+      background-color: rgb(255, 249, 238);
       cursor: pointer;
-      border: 1px solid v.$secondary-color;
-      padding: 1rem 2rem;
+      // border: 1px solid v.$secondary-color;
+      // padding: 1rem 2rem;
       position: relative;
+      img {
+        object-fit: contain;
+        width: 100%;
+      }
       .c-card {
-        img {
-          object-fit: contain;
-          width: 100%;
+        padding: 2rem;
+        cursor: pointer;
+        &__footer{
+          margin: v.$standard-margin 0;
         }
       }
     }
   }
+

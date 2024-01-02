@@ -4,8 +4,8 @@ import { Product } from "./models/Product";
 
 const products = [
   new Product(
-    "Kungsgran",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7xjNHyxM5rjPWc3rV_EZYVqaG5OmAso6eFw&usqp=CAU",
+    "Rödgran",
+    "src/assets/img/red_spruce3.jpg",
     "Medium",
     499,
     "Text om gran 1",
@@ -13,31 +13,31 @@ const products = [
   ),
   new Product(
     "Rödgran",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7xjNHyxM5rjPWc3rV_EZYVqaG5OmAso6eFw&usqp=CAU",
+    "src/assets/img/resized_images/red_spruce.webp",
     "Medium",
     350,
     "Text om gran 2",
     "002"
   ),
   new Product(
-    "Kungsgran",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7xjNHyxM5rjPWc3rV_EZYVqaG5OmAso6eFw&usqp=CAU",
+    "Blågran",
+    "src/assets/img/resized_images/blue_spruce.webp",
     "Stor",
     699,
     "Text om gran 3",
     "003"
   ),
   new Product(
-    "Kungsgran",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7xjNHyxM5rjPWc3rV_EZYVqaG5OmAso6eFw&usqp=CAU",
-    "Liten",
-    350,
+    "Bosnisk tall",
+    "src/assets/img/resized_images/bosnian_pine.webp",
+    "Medel",
+    750,
     "Text om gran 4",
     "004"
   ),
   new Product(
     "Rödgran",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7xjNHyxM5rjPWc3rV_EZYVqaG5OmAso6eFw&usqp=CAU",
+    "src/assets/img/red_spruce2.jpg",
     "Liten",
     250,
     "Text om gran 5",
@@ -45,7 +45,7 @@ const products = [
   ),
   new Product(
     "Rödgran",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7xjNHyxM5rjPWc3rV_EZYVqaG5OmAso6eFw&usqp=CAU",
+    "src/assets/img/resized_images/red_spruce3.webp",
     "Stor",
     390,
     "Text om gran 6",
@@ -74,6 +74,7 @@ const createProductsHtml = () => {
     const productPrice = document.createElement("p");
     const productId = document.createElement("p");
     const productSize = document.createElement("p");
+    const productFooter = document.createElement("div")
     const addToCartButton = document.createElement("button");
 
     productTitle.innerHTML = products[i].title;
@@ -93,16 +94,20 @@ const createProductsHtml = () => {
     productPrice.classList.add("c-card__price");
     productSize.classList.add("c-card__attribute");
     productId.classList.add("c-card__text");
+    productFooter.classList.add("c-card__footer")
     addToCartButton.classList.add("c-button", "c-button--primary");
 
-    productContainer.appendChild(productImage);
-    productContainer.appendChild(productTitle);
-    productContainer.appendChild(productSize);
-    productContainer.appendChild(productPrice);
+    listItem.appendChild(productImage);
+    productContainer.appendChild(productHeader);
+    productHeader.appendChild(productTitle);
+    productContainer.appendChild(productBody)
+    productBody.appendChild(productSize);
+    productBody.appendChild(productPrice);
 
     list?.appendChild(listItem);
     listItem.appendChild(productContainer);
-    listItem.appendChild(addToCartButton);
+    productContainer.appendChild(productFooter);
+    productFooter.appendChild(addToCartButton)
 
     addToCartButton.addEventListener("click", () => {
       const checkId = cart.findIndex(
@@ -128,8 +133,7 @@ const createProductsHtml = () => {
         cartHtmlForCheckout();
       }
     });
-
-    productContainer.addEventListener("click", () => {
+    const clickOnProduct = () => {
       const productPage = document.querySelector(".c-product-page");
       const productPageTitle = document.getElementById("product-page-title");
       const productPageImage = document.getElementById("product-page-image");
@@ -151,7 +155,10 @@ const createProductsHtml = () => {
       if (productPagePrice) {
         productPagePrice.innerHTML = products[i].price.toString() + " kr";
       }
-    });
+    };
+    productImage.addEventListener("click", clickOnProduct);
+    productHeader.addEventListener("click", clickOnProduct);
+    productBody.addEventListener("click", clickOnProduct);
   }
 };
 const totalPriceTag = document.createElement("p");
