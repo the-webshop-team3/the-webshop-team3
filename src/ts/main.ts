@@ -96,6 +96,7 @@ const createProductsHtml = () => {
     addToCartButton.classList.add("c-button", "c-button--primary");
 
     productContainer.appendChild(productImage);
+    productContainer.appendChild(productTitle);
     productContainer.appendChild(productSize);
     productContainer.appendChild(productPrice);
 
