@@ -1,0 +1,19 @@
+@use "variables" as v;
+
+.c-button {
+  border-radius: v.$btn-border-radius;
+  padding: v.$btn-padding;
+  border: 1px solid rgba(255, 255, 255, 0.46);
+
+  &--primary {
+    width: 70%;
+  }
+  &--cta {
+    padding: v.$btn-padding-large;
+    color: v.$bright-text;
+    background-color: v.$button-primary;
+    font-weight: 400;
+    font-size: 1.2rem;
+    font-family: informapro, sans-serif;
+  }
+}

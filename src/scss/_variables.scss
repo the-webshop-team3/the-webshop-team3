@@ -2,7 +2,7 @@
 $itemwidth: 100%;
 $imgsize: 5rem;
 
-$btn-border-radius: 5px;
+$btn-border-radius: 50px;
 $expand-btn-size: 60px;
 
 $standard-value: .8rem;
@@ -10,6 +10,7 @@ $medium: 5rem;
 $large: 4vw!important;
 
 $btn-padding: 0.5rem 1rem;
+$btn-padding-large: 1rem 2rem;
 $btn-padding-small: 0.5rem;
 $large-padding: 1vw $large;
 
@@ -32,7 +33,7 @@ $secondary-color: rgb(169, 169, 169);
 $third-color: rgb(85, 85, 85);
 
 $linear-gradient: linear-gradient(45deg, #e66465, #9198e5);
-$button-primary:rgb(93, 98, 254);
+$button-primary:#1b5547;
 $bright-text: whitesmoke;
 $overlay-dark:  rgba(0, 0, 0, 0.5);
 $overlay-darker:  rgba(0, 0, 0, 0.6);
