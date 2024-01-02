@@ -240,7 +240,7 @@ const cartHtml = () => {
       }
     });
   }
-  document.getElementById("cart-total-price")?.appendChild(totalPriceTag);
+  document.querySelector(".cart__total-price")?.appendChild(totalPriceTag);
 };
 cartHtml();
 

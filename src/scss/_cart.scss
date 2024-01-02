@@ -23,6 +23,21 @@
     padding: 0.5rem;
     height: fit-content;
   }
+
+  &__header {
+    padding: 1rem;
+  }
+
+  &__total-price {
+    margin: 1rem;
+  }
+
+  &__button-wrapper {
+    /* border: solid red 1px; */
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
+  }
 }
 
 .cart.--active {
@@ -32,20 +47,10 @@
   bottom: 0;
 }
 
-.cart__button-wrapper {
-  border: solid red 1px;
-  width: 80%;
-  display: flex;
-}
-
-.cart__header {
-  border: solid red 1px;
-}
-
 .l-list-cart {
-  border: solid red 1px;
+  /* border: solid red 1px; */
   overflow: auto;
-  height: 85%;
+  height: 80%;
   width: 70%;
 }
 
