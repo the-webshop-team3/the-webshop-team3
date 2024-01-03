@@ -1,6 +1,7 @@
-@use 'variables' as v;
+@use "variables" as v;
+@use "mixins" as m;
 
-.l-wrapper#wrapper-product-page{
+.l-wrapper#wrapper-product-page {
   display: none;
   position: fixed;
   top: 0;
@@ -8,43 +9,89 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  
-  &.--active{
+
+  &.--active {
     display: flex;
-    background-color: rgba(5, 5, 5, .5);
+    background-color: rgba(5, 5, 5, 0.5);
     backdrop-filter: blur(5px);
   }
 }
 
 .c-product-page {
+  display: none;
+  // position: relative;
+  flex-direction: column;
   height: 100vh;
   width: 100vw;
   overflow: auto;
   background: v.$primary-color;
-  display: none;
   padding: 1rem;
-  img {
-    width: 100%;
+  padding-bottom: 8rem;
+  @include m.lg {
+    // flex-direction: column;
+    // flex-wrap: wrap;
+    align-items: start;
+    gap: 1rem;
+    grid-template-areas:
+      "img hd"
+      "img txt"
+      "img kr"
+      "img btn"
+      "img 1fr";
+      grid-template-columns: 50% auto;
+      grid-template-rows: 4rem auto 4rem
   }
-  &__header{
-    font-size: 2rem;
+  @include m.desktop{
+   padding: 4rem 4rem;   
   }
-  &__info{
-overflow: hidden;
-display: -webkit-box;
--webkit-line-clamp: 2;
--webkit-box-orient: vertical;
-&.--active{
-  -webkit-line-clamp: 10;
+  &__figure {
+    grid-area: img;
 
-}
+    @include m.lg {
+      // width: 50vw;
+    }
+    img {
+      width: 100%;
+    }
   }
-  &__price{
+  &__header {
+    grid-area: hd;
     font-size: 2rem;
-    margin: 1rem 0;
-    color: rgb(177, 1, 1);  
+    @include m.lg {
+      width: 10%;
+      height: 10%;
+    }
   }
-  
+  &__info {
+    grid-area: txt;
+    position: relative;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    @include m.tablet {
+      // max-width: 80%;
+    }
+    @include m.lg {
+      -webkit-line-clamp: 10;
+      // width: 65%;
+    }
+ 
+
+    &.--active {
+      -webkit-line-clamp: 10;
+    }
+  }
+  &__price {
+    position: relative;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 1rem 0;
+    color: rgb(177, 1, 1);
+    grid-area: kr;
+  }
+
   .c-product-page__close-button {
     position: absolute;
     top: 0.5rem;
@@ -53,7 +100,11 @@ display: -webkit-box;
 }
 
 .c-product-page.--active {
-  display: block;
+  display: flex;
   position: fixed;
   top: 0;
+  @include m.lg{
+    display: grid;
+
   }
+}

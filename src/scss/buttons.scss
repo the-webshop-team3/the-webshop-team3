@@ -14,6 +14,23 @@
     font-family: informapro, sans-serif;
     width: 100%;
     font-size: 1rem;
+    grid-area: btn;
+    @include m.tablet{
+      max-width:300px;
+    }
+  }
+  &--tertiary{
+    width: 6rem;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    color: rgb(0, 85, 255);
+    @include m.lg{
+      display: none;
+    }
   }
   &--cta {
     width: 70%;
