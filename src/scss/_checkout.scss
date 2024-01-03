@@ -1,4 +1,5 @@
 @use "variables" as v;
+@use "mixins" as m;
 
 .c-checkout {
   display: none;
@@ -11,8 +12,20 @@
   width: 100vw;
   background-color: v.$primary-color;
 
+  @include m.lg {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 3rem;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
   &__title {
     padding: 1rem;
+
+    @include m.lg {
+      width: 100%;
+    }
   }
 
   #checkout-close-button {
@@ -34,6 +47,12 @@
   width: 80%;
   flex-direction: column;
   padding: 5px 5px 0 5px;
+
+  @include m.lg {
+    width: 50%;
+    height: 70%;
+    margin-right: 5%;
+  }
 
   &::-webkit-scrollbar {
     width: 10px;
@@ -88,6 +107,10 @@ form {
   margin-top: 2rem;
   margin-bottom: 1rem;
 
+  @include m.lg {
+    width: 40%;
+  }
+
   div {
     width: 100%;
   }
@@ -98,5 +121,9 @@ form {
 
   .form-control {
     padding: 2px;
+
+    @include m.lg {
+      padding: 8px;
+    }
   }
 }
