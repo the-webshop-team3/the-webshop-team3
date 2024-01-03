@@ -352,8 +352,80 @@ buyButton.addEventListener("click", handlePurchase);
 
 function handlePurchase(event: Event) {
   event.preventDefault();
-  showPurchaseModal();
+
+  if (validateForm()) {
+    showPurchaseModal();
+  }
 }
+
+//---------
+function validateForm(): boolean {
+  const fullname = document.getElementById("fullname") as HTMLInputElement;
+  const address = document.getElementById("address") as HTMLInputElement;
+  const zipcode = document.getElementById("zipcode") as HTMLInputElement;
+  const email = document.getElementById("email") as HTMLInputElement;
+  const cellPhone = document.getElementById("cellPhone") as HTMLInputElement;
+
+
+  if (fullname.value === "" || !isValidFullName(fullname.value)) {
+    fullname.classList.add("is-invalid");
+    return false;
+  } else {
+    fullname.classList.remove("is-invalid");
+  }
+
+  if(address.value === "" || !isValidAddress(address.value)){
+    address.classList.add('is-invalid');
+    return false;
+  } else {
+    address.classList.remove('is-invalid');
+  }
+
+  if(zipcode.value === "" || !isValidPostalCode(zipcode.value)){
+    zipcode.classList.add('is-invalid');
+    return false;
+  } else {
+    zipcode.classList.remove('is-invalid');
+  }
+
+  if(email.value === "" || !isValidEmail(email.value)){
+    email.classList.add('is-invalid');
+    return false;
+  } else {
+    email.classList.remove('is-invalid');
+  }
+
+  if(cellPhone.value === "" || !isValidPhoneNumber(cellPhone.value)){
+    cellPhone.classList.add('is-invalid');
+    return false;
+  } else {
+    cellPhone.classList.remove('is-invalid');
+  }
+
+  return true;
+}
+
+function isValidFullName(fullName: string): boolean {
+  return /^[A-Za-z]+\s[A-Za-z]+$/.test(fullName);
+}
+
+function isValidAddress(address: string): boolean {
+  return address.trim().length >= 10;
+}
+
+function isValidPostalCode(postalCode: string): boolean {
+  return /^\d{5}$/.test(postalCode);
+}
+
+function isValidEmail(email: string): boolean {
+  return /@hotmail\.com$|@gmail\.com$|@yahoo\.com$/.test(email);
+}
+
+function isValidPhoneNumber(phoneNumber: string): boolean {
+  return /^\d{10}$/.test(phoneNumber);
+}
+//---------
+
 
 function showPurchaseModal() {
   const modal = document.getElementById("purchaseModal") as HTMLDivElement;
