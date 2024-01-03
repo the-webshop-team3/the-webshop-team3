@@ -294,14 +294,16 @@ const cartHtmlForCheckout = () => {
   }
 
   for (let i = 0; i < cart.length; i++) {
-    const productContainer = document.createElement("div");
-    const productTitle = document.createElement("h3");
+    const listItem = document.createElement("li");
     const productImage = document.createElement("img");
+    const productBody = document.createElement("div");
+    const productTitle = document.createElement("h3");
     const productPrice = document.createElement("p");
+    const articleNumber = document.createElement("p");
+    const cardFooter = document.createElement("div");
     const addButton = document.createElement("button");
     const quantityTag = document.createElement("span");
     const removeButton = document.createElement("button");
-    const articleNumber = document.createElement("p");
 
     productTitle.innerHTML = cart[i].title;
     productImage.setAttribute("src", cart[i].imageUrl);
@@ -311,15 +313,21 @@ const cartHtmlForCheckout = () => {
     removeButton.innerHTML = "-";
     articleNumber.innerHTML = "Art.nr: " + cart[i].id;
 
-    productContainer.appendChild(productTitle);
-    productContainer.appendChild(productImage);
-    productContainer.appendChild(productPrice);
-    productContainer.appendChild(articleNumber);
-    productContainer.appendChild(addButton);
-    productContainer.appendChild(quantityTag);
-    productContainer.appendChild(removeButton);
+    listItem.classList.add("c-card-checkout");
+    productBody.classList.add("c-card-checkout__body");
+    cardFooter.classList.add("c-card-checkout__footer");
 
-    cartInCheckout?.appendChild(productContainer);
+    listItem.appendChild(productImage);
+    productBody.appendChild(productTitle);
+    productBody.appendChild(productPrice);
+    productBody.appendChild(articleNumber);
+    listItem.appendChild(productBody);
+    cardFooter.appendChild(removeButton);
+    cardFooter.appendChild(quantityTag);
+    cardFooter.appendChild(addButton);
+    listItem.appendChild(cardFooter);
+
+    cartInCheckout?.appendChild(listItem);
 
     addButton.addEventListener("click", () => {
       cart[i].quantity++;
@@ -395,7 +403,6 @@ function validateForm(): boolean {
   const email = document.getElementById("email") as HTMLInputElement;
   const cellPhone = document.getElementById("cellPhone") as HTMLInputElement;
 
-
   if (fullname.value === "" || !isValidFullName(fullname.value)) {
     fullname.classList.add("is-invalid");
     return false;
@@ -403,32 +410,32 @@ function validateForm(): boolean {
     fullname.classList.remove("is-invalid");
   }
 
-  if(address.value === "" || !isValidAddress(address.value)){
-    address.classList.add('is-invalid');
+  if (address.value === "" || !isValidAddress(address.value)) {
+    address.classList.add("is-invalid");
     return false;
   } else {
-    address.classList.remove('is-invalid');
+    address.classList.remove("is-invalid");
   }
 
-  if(zipcode.value === "" || !isValidPostalCode(zipcode.value)){
-    zipcode.classList.add('is-invalid');
+  if (zipcode.value === "" || !isValidPostalCode(zipcode.value)) {
+    zipcode.classList.add("is-invalid");
     return false;
   } else {
-    zipcode.classList.remove('is-invalid');
+    zipcode.classList.remove("is-invalid");
   }
 
-  if(email.value === "" || !isValidEmail(email.value)){
-    email.classList.add('is-invalid');
+  if (email.value === "" || !isValidEmail(email.value)) {
+    email.classList.add("is-invalid");
     return false;
   } else {
-    email.classList.remove('is-invalid');
+    email.classList.remove("is-invalid");
   }
 
-  if(cellPhone.value === "" || !isValidPhoneNumber(cellPhone.value)){
-    cellPhone.classList.add('is-invalid');
+  if (cellPhone.value === "" || !isValidPhoneNumber(cellPhone.value)) {
+    cellPhone.classList.add("is-invalid");
     return false;
   } else {
-    cellPhone.classList.remove('is-invalid');
+    cellPhone.classList.remove("is-invalid");
   }
 
   return true;
@@ -454,7 +461,6 @@ function isValidPhoneNumber(phoneNumber: string): boolean {
   return /^\d{10}$/.test(phoneNumber);
 }
 //---------
-
 
 function showPurchaseModal() {
   const modal = document.getElementById("purchaseModal") as HTMLDivElement;
@@ -512,37 +518,42 @@ closeCheckoutButton.addEventListener("click", () => {
 
 const stopScroll = () => {
   const pages = {
-  productPage: document.getElementById("wrapper-product-page"),
-  cart: document.getElementById("cart"),
-  checkout: document.querySelector(".c-checkout")
-}
+    productPage: document.getElementById("wrapper-product-page"),
+    cart: document.getElementById("cart"),
+    checkout: document.querySelector(".c-checkout"),
+  };
 
-if(pages.cart?.classList.contains("--active") || pages.checkout?.classList.contains("--active") || pages.productPage?.classList.contains("--active")){
-  document.body.classList.add("stop-scroll")
-  console.log("hej")
-}
-else{
-  document.body.classList.remove("stop-scroll")
-}
-}
+  if (
+    pages.cart?.classList.contains("--active") ||
+    pages.checkout?.classList.contains("--active") ||
+    pages.productPage?.classList.contains("--active")
+  ) {
+    document.body.classList.add("stop-scroll");
+    console.log("hej");
+  } else {
+    document.body.classList.remove("stop-scroll");
+  }
+};
 
 const closeProductPageButton = document.getElementById(
   "product-page-close-button"
 ) as HTMLButtonElement;
-const productPage = document.querySelector("#wrapper-product-page") as HTMLElement;
+const productPage = document.querySelector(
+  "#wrapper-product-page"
+) as HTMLElement;
 
-stopScroll()
-openCheckoutButton.addEventListener("click", stopScroll)
-closeCheckoutButton.addEventListener("click", stopScroll)
-openCartButton.addEventListener("click", stopScroll)
-closeCartButton.addEventListener("click", stopScroll)
-productPage.addEventListener("click", stopScroll)
-closeProductPageButton.addEventListener("click", stopScroll)
+stopScroll();
+openCheckoutButton.addEventListener("click", stopScroll);
+closeCheckoutButton.addEventListener("click", stopScroll);
+openCartButton.addEventListener("click", stopScroll);
+closeCartButton.addEventListener("click", stopScroll);
+productPage.addEventListener("click", stopScroll);
+closeProductPageButton.addEventListener("click", stopScroll);
 
 const cardTitle = document.querySelector(".c-card__header");
 const cardImage = document.querySelector(".c-card__image");
 const cardInfo = document.querySelector(".c-card__body");
 
-cardTitle?.addEventListener("click", stopScroll)
-cardImage?.addEventListener("click", stopScroll)
-cardInfo?.addEventListener("click", stopScroll)
+cardTitle?.addEventListener("click", stopScroll);
+cardImage?.addEventListener("click", stopScroll);
+cardInfo?.addEventListener("click", stopScroll);
