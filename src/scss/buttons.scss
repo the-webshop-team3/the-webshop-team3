@@ -1,0 +1,42 @@
+@use "variables" as v;
+@use 'mixins' as m;
+
+.c-button {
+  border-radius: v.$btn-border-radius;
+  padding: v.$btn-padding;
+  border: 1px solid rgba(255, 255, 255, 0.46);
+
+  &--primary {
+    padding: v.$btn-padding-large;
+    color: v.$bright-text;
+    background-color: v.$button-primary;
+    font-weight: 400;
+    font-family: informapro, sans-serif;
+    width: 100%;
+    font-size: 1rem;
+    grid-area: btn;
+    @include m.tablet{
+      max-width:300px;
+    }
+  }
+  &--tertiary{
+    width: 6rem;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    color: rgb(0, 85, 255);
+    @include m.lg{
+      display: none;
+    }
+  }
+  &--cta {
+    width: 70%;
+    padding: v.$btn-padding-large;
+    font-size: 1.2rem;
+    max-width: 300px;
+
+  }
+}
