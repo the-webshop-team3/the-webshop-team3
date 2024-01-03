@@ -18,6 +18,10 @@ body{
 font-style: normal;
 background-color: v.$primary-color;
 }
+.stop-scroll{
+  overflow: hidden;
+}
+
 h1{
   // font-weight: 700;
 }
@@ -39,7 +43,8 @@ h1{
 
 #main {
   min-height: 70vh;
-  border: 1px solid v.$secondary-color;
+  
+  // border: 1px solid v.$secondary-color;
 }
 #main-cart-button {
   position: fixed;
