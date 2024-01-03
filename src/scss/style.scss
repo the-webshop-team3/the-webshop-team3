@@ -1,19 +1,21 @@
 @use "variables" as v;
-@use 'buttons';
+@use "buttons";
 @use "productlist";
-@use "mixins";
+@use "mixins" as m;
 @use "productpage";
 @use "cart";
 @use "checkout";
 @use "thankyou";
+@use "footer";
 
-*,p {
+*,
+p {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 body {
-  font-family: "roca", sans-serif;
+  font-family: "informapro", sans-serif;
   // font-weight: 400;
   font-style: normal;
   background-color: v.$primary-color;
@@ -21,9 +23,10 @@ body {
 .stop-scroll {
   overflow: hidden;
 }
-
-h1 {
-  // font-weight: 700;
+h1,
+h2,
+h3 {
+  font-family: "roca", sans-serif;
 }
 
 .header {
@@ -32,11 +35,16 @@ h1 {
   background: linear-gradient(to top, rgba(black, 0.4), rgba(whitesmoke, 0.1)),
     url("src/assets/img/resized_images/hero-1920w-landscape.webp") center/cover
       no-repeat;
-  font-size: v.$fontSizeLarge;
   color: v.$bright-text;
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
+  &__logo {
+    font-size: v.$fontSizeXL;
+    @include m.lg{
+    font-size: v.$fontSizeXXL;
+  }
+  }
 }
 
 #main {
@@ -51,45 +59,7 @@ h1 {
   right: 1rem;
 }
 
-.footer {
-  min-height: 30vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
 
-.footer__content {
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2rem;
-
-  &__info {
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-  }
-
-  &__about {
-    max-width: 600px;
-  }
-}
-
-.bi-instagram,
-.bi-facebook {
-  font-size: 2rem;
-  padding: 5px;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.footer__copyright {
-  margin: 1rem 0;
-}
 
 .form-validation {
   display: flex;

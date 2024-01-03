@@ -57,6 +57,7 @@ const cart: Product[] = JSON.parse(
   sessionStorage.getItem("cartItems") || JSON.stringify([])
 );
 
+// CTA scrollar till produkterna
 const ctaButton = document.getElementById("cta")?.addEventListener("click",()=>{
   const productList = document.getElementById("product-list")?.scrollIntoView({behavior:"smooth"})
 })
