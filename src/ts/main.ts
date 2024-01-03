@@ -57,6 +57,11 @@ const cart: Product[] = JSON.parse(
   sessionStorage.getItem("cartItems") || JSON.stringify([])
 );
 
+const ctaButton = document.getElementById("cta")?.addEventListener("click",()=>{
+  const productList = document.getElementById("product-list")?.scrollIntoView({behavior:"smooth"})
+})
+
+
 let totalPrice: number = 0;
 
 console.log(products);
@@ -557,3 +562,4 @@ const cardInfo = document.querySelector(".c-card__body");
 cardTitle?.addEventListener("click", stopScroll);
 cardImage?.addEventListener("click", stopScroll);
 cardInfo?.addEventListener("click", stopScroll);
+
