@@ -134,17 +134,21 @@ const createProductsHtml = () => {
       }
     });
 
-
     const clickOnProduct = () => {
       const productPage = document.querySelector(".c-product-page");
       const productPageTitle = document.getElementById("product-page-title");
       const productPageImage = document.getElementById("product-page-image");
       const productPageInfo = document.getElementById("product-page-info");
+      const readMore = document.getElementById(
+        "read-more"
+      ) as HTMLButtonElement;
       const productPagePrice = document.getElementById("product-page-price");
       const productPageWrapper = document.getElementById(
         "wrapper-product-page"
       );
-      const productPageClose = document.getElementById("product-page-close-button")
+      const productPageClose = document.getElementById(
+        "product-page-close-button"
+      );
       currentProduct = products[i];
 
       if (productPageWrapper) {
@@ -164,14 +168,26 @@ const createProductsHtml = () => {
       if (productPagePrice) {
         productPagePrice.innerHTML = products[i].price.toString() + " kr";
       }
-productPageClose?.addEventListener("click",() => {
-productPageWrapper?.classList.remove("--active")
-})
+      readMore?.addEventListener("click", () => {
+        if (productPageInfo?.classList.contains("--active")) {
+          productPageInfo.classList.remove("--active");
+          readMore.innerHTML = "Läs mer";
+        } else {
+          productPageInfo?.classList.add("--active");
+          readMore.innerHTML = "Visa mindre";
+        }
+      });
+      productPageClose?.addEventListener("click", () => {
+        productPageWrapper?.classList.remove("--active");
+        if (productPageInfo?.classList.contains("--active")) {
+          productPageInfo.classList.remove("--active");
+          readMore.innerHTML = "Läs mer";
+        }
+      });
     };
     productImage.addEventListener("click", clickOnProduct);
     productHeader.addEventListener("click", clickOnProduct);
     productBody.addEventListener("click", clickOnProduct);
-    
   }
 };
 const totalPriceTag = document.createElement("p");
@@ -422,9 +438,39 @@ closeCheckoutButton.addEventListener("click", () => {
   cartContainer.classList.remove("--active");
 });
 
-//öppna och stäng produktsida
+const stopScroll = () => {
+  const pages = {
+  productPage: document.getElementById("wrapper-product-page"),
+  cart: document.getElementById("cart"),
+  checkout: document.querySelector(".c-checkout")
+}
+
+if(pages.cart?.classList.contains("--active") || pages.checkout?.classList.contains("--active") || pages.productPage?.classList.contains("--active")){
+  document.body.classList.add("stop-scroll")
+  console.log("hej")
+}
+else{
+  document.body.classList.remove("stop-scroll")
+}
+}
+
 const closeProductPageButton = document.getElementById(
   "product-page-close-button"
 ) as HTMLButtonElement;
-const productPage = document.querySelector(".c-product-page") as HTMLElement;
-closePage(closeProductPageButton, productPage);
+const productPage = document.querySelector("#wrapper-product-page") as HTMLElement;
+
+stopScroll()
+openCheckoutButton.addEventListener("click", stopScroll)
+closeCheckoutButton.addEventListener("click", stopScroll)
+openCartButton.addEventListener("click", stopScroll)
+closeCartButton.addEventListener("click", stopScroll)
+productPage.addEventListener("click", stopScroll)
+closeProductPageButton.addEventListener("click", stopScroll)
+
+const cardTitle = document.querySelector(".c-card__header");
+const cardImage = document.querySelector(".c-card__image");
+const cardInfo = document.querySelector(".c-card__body");
+
+cardTitle?.addEventListener("click", stopScroll)
+cardImage?.addEventListener("click", stopScroll)
+cardInfo?.addEventListener("click", stopScroll)

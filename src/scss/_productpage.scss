@@ -7,6 +7,7 @@
   justify-content: center;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
   
   &.--active{
     display: flex;
@@ -16,8 +17,9 @@
 }
 
 .c-product-page {
-  height: 95vh;
-  width: 95vw;
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
   background: v.$primary-color;
   display: none;
   padding: 1rem;
@@ -26,6 +28,16 @@
   }
   &__header{
     font-size: 2rem;
+  }
+  &__info{
+overflow: hidden;
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+&.--active{
+  -webkit-line-clamp: 10;
+
+}
   }
   &__price{
     font-size: 2rem;
@@ -43,5 +55,5 @@
 .c-product-page.--active {
   display: block;
   position: fixed;
-  top: 1rem;
+  top: 0;
   }
