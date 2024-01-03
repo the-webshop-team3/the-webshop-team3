@@ -98,9 +98,14 @@ h1{
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 4rem;
   
   .col-md-12{
     text-align: center;
+  }
+  .mt-0 {
+    background-color: v.$secondary-color;
+    border: 0.1rem solid rgb(215, 211, 211);
   }
 }
 
