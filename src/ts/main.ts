@@ -6,48 +6,48 @@ const products = [
   new Product(
     "Rödgran",
     "src/assets/img/resized_images/red_spruce3.webp",
-    "Medium",
+    "230 – 260 cm",
     499,
-    "Text om gran 1",
+    "Rödgranen, en symbol för julens stämning, är känd för sina stadiga grenar och doftande barr som sprider en friskhet som förtrollar. Med dess frodiga barrverk och praktfulla utseende blir denna gran ett lysande inslag i juldekorationerna. Med rätt underhåll sitter barren kvar länge och ger en varaktig skönhet som fyller hemmet med en känsla av tradition och glädje under helgerna.",
     "001"
   ),
   new Product(
     "Rödgran",
     "src/assets/img/resized_images/red_spruce.webp",
-    "Medium",
+    "180 – 230 cm",
     350,
-    "Text om gran 2",
+    "Inget fångar julens anda som den klassiska rödgranen. Dess slanka silhuett och intensiva gröna barr skapar en fantastisk atmosfär och sprider en ljuvlig doft i varje vrå. Rödgranen är mer än en dekoration – den är själva hjärtat i julens festligheter och bjuder in till en tid av gemenskap och värme.",
     "002"
   ),
   new Product(
     "Blågran",
     "src/assets/img/resized_images/blue_spruce.webp",
-    "Stor",
+    "180 – 230 cm",
     699,
-    "Text om gran 3",
+    "Blågranen är en storslagen symbol för vinterns charm och elegans. Med sina mjuka, silverblå barr skapar denna gran en atmosfär av frostig skönhet i varje rum. Dess kompakta och välmående grenverk ger en perfekt plats att hänga julens dekorationer och ljus, medan dess hållbara barr behåller sin färg och form under hela säsongen. Blågranen erbjuder en unik och förtrollande touch till julens firande och blir snabbt hjärtat i ditt hem under denna festliga tid.",
     "003"
   ),
   new Product(
     "Bosnisk tall",
     "src/assets/img/resized_images/bosnian_pine.webp",
-    "Medel",
+    "180 – 230 cm",
     750,
-    "Text om gran 4",
+    "Bosnisk tall, med sin ståtliga och majestätiska gestalt, är en symbol för vinterens skönhet och styrka. Dess karaktäristiska mörkgröna barr och robusta grenar skapar en imponerande kuliss för julens festligheter. Med en naturlig symmetri och en doft av skogens friskhet blir denna tall en enastående centralpunkt för dekorationer och ljus. Dess hållbara kvalitet och långvariga skönhet gör den till det perfekta valet för att införa en känsla av tradition och elegans i ditt hem under julen.",
     "004"
   ),
   new Product(
     "Rödgran",
     "src/assets/img/resized_images/red_spruce2.webp",
-    "Liten",
+    "100 – 140 cm",
     250,
-    "Text om gran 5",
+    "Rödgranen är julens symbol av skönhet och elegans. Dess frodiga barrverk skänker inte bara en frisk doft utan också en levande touch till varje hem. Med en rödgran i huset skapas en atmosfär av tradition och fröjd, där varje barrstrå förmedlar känslan av en härlig julstund.",
     "005"
   ),
   new Product(
     "Rödgran",
-    "src/assets/img/resized_images/red_spruce3.webp",
-    "Stor",
-    390,
+    "src/assets/img/resized_images/red_spruce_xl.webp",
+    "300 – 350 cm",
+    990,
     "Text om gran 6",
     "006"
   ),
@@ -133,14 +133,27 @@ const createProductsHtml = () => {
         cartHtmlForCheckout();
       }
     });
+
     const clickOnProduct = () => {
       const productPage = document.querySelector(".c-product-page");
       const productPageTitle = document.getElementById("product-page-title");
       const productPageImage = document.getElementById("product-page-image");
       const productPageInfo = document.getElementById("product-page-info");
+      const readMore = document.getElementById(
+        "read-more"
+      ) as HTMLButtonElement;
       const productPagePrice = document.getElementById("product-page-price");
+      const productPageWrapper = document.getElementById(
+        "wrapper-product-page"
+      );
+      const productPageClose = document.getElementById(
+        "product-page-close-button"
+      );
       currentProduct = products[i];
 
+      if (productPageWrapper) {
+        productPageWrapper.classList.add("--active");
+      }
       productPage?.classList.add("--active");
 
       if (productPageTitle) {
@@ -155,6 +168,22 @@ const createProductsHtml = () => {
       if (productPagePrice) {
         productPagePrice.innerHTML = products[i].price.toString() + " kr";
       }
+      readMore?.addEventListener("click", () => {
+        if (productPageInfo?.classList.contains("--active")) {
+          productPageInfo.classList.remove("--active");
+          readMore.innerHTML = "Läs mer";
+        } else {
+          productPageInfo?.classList.add("--active");
+          readMore.innerHTML = "Visa mindre";
+        }
+      });
+      productPageClose?.addEventListener("click", () => {
+        productPageWrapper?.classList.remove("--active");
+        if (productPageInfo?.classList.contains("--active")) {
+          productPageInfo.classList.remove("--active");
+          readMore.innerHTML = "Läs mer";
+        }
+      });
     };
     productImage.addEventListener("click", clickOnProduct);
     productHeader.addEventListener("click", clickOnProduct);
@@ -481,9 +510,39 @@ closeCheckoutButton.addEventListener("click", () => {
   cartContainer.classList.remove("--active");
 });
 
-//öppna och stäng produktsida
+const stopScroll = () => {
+  const pages = {
+  productPage: document.getElementById("wrapper-product-page"),
+  cart: document.getElementById("cart"),
+  checkout: document.querySelector(".c-checkout")
+}
+
+if(pages.cart?.classList.contains("--active") || pages.checkout?.classList.contains("--active") || pages.productPage?.classList.contains("--active")){
+  document.body.classList.add("stop-scroll")
+  console.log("hej")
+}
+else{
+  document.body.classList.remove("stop-scroll")
+}
+}
+
 const closeProductPageButton = document.getElementById(
   "product-page-close-button"
 ) as HTMLButtonElement;
-const productPage = document.querySelector(".c-product-page") as HTMLElement;
-closePage(closeProductPageButton, productPage);
+const productPage = document.querySelector("#wrapper-product-page") as HTMLElement;
+
+stopScroll()
+openCheckoutButton.addEventListener("click", stopScroll)
+closeCheckoutButton.addEventListener("click", stopScroll)
+openCartButton.addEventListener("click", stopScroll)
+closeCartButton.addEventListener("click", stopScroll)
+productPage.addEventListener("click", stopScroll)
+closeProductPageButton.addEventListener("click", stopScroll)
+
+const cardTitle = document.querySelector(".c-card__header");
+const cardImage = document.querySelector(".c-card__image");
+const cardInfo = document.querySelector(".c-card__body");
+
+cardTitle?.addEventListener("click", stopScroll)
+cardImage?.addEventListener("click", stopScroll)
+cardInfo?.addEventListener("click", stopScroll)
