@@ -51,10 +51,11 @@
 }
 
 .l-list-cart {
-  /* border: solid red 1px; */
+  list-style: none;
+  padding-left: 0;
   overflow: auto;
   height: 80%;
-  width: 70%;
+  width: 80%;
 
   &::-webkit-scrollbar {
     width: 10px;
@@ -71,15 +72,13 @@
 }
 
 .c-card-cart {
-  /*  border: solid red 1px; */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  align-items: center;
+  align-items: end;
   background-color: white;
-  margin-top: 3px;
   padding: 0.5rem;
 
   &__figure {
