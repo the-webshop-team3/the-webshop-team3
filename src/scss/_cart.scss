@@ -1,4 +1,5 @@
 @use "variables" as v;
+@use "mixins" as m;
 
 .cart {
   height: 100vh;
@@ -9,6 +10,11 @@
   overflow: auto;
   flex-direction: column;
   align-items: center;
+
+  @include m.tablet {
+    width: 60vw;
+    right: 0;
+  }
 
   &--checkout {
     height: unset;
@@ -105,6 +111,26 @@
       margin: v.$small-margin;
       border-radius: v.$btn-border-radius;
       border-style: none;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  /*   .cart {
+    width: 60vw;
+    right: 0;
+  } */
+
+  .c-card-cart {
+    &__figure {
+      grid-area: 1 / 1 / 4 / 2;
+    }
+    &__body {
+      grid-area: 2 / 2 / 3 / 3;
+    }
+
+    &__footer {
+      grid-area: 3 / 2 / 4 / 3;
     }
   }
 }

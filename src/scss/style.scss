@@ -1,5 +1,5 @@
 @use "variables" as v;
-@use 'components';
+@use "components";
 @use "productlist";
 @use "mixins";
 @use "productpage";
@@ -12,24 +12,22 @@
   margin: 0;
   box-sizing: border-box;
 }
-body{
+body {
   font-family: "roca", sans-serif;
-// font-weight: 400;
-font-style: normal;
-background-color: v.$primary-color;
+  // font-weight: 400;
+  font-style: normal;
+  background-color: v.$primary-color;
 }
-h1{
+h1 {
   // font-weight: 700;
 }
 
 .header {
   display: flex;
   height: 100vh;
-  background: linear-gradient(
-    to top,
-    rgba(black, 0.4),
-    rgba(whitesmoke, 0.1)
-  ),url("src/assets/img/resized_images/hero-1920w-landscape.webp") center/cover no-repeat;
+  background: linear-gradient(to top, rgba(black, 0.4), rgba(whitesmoke, 0.1)),
+    url("src/assets/img/resized_images/hero-1920w-landscape.webp") center/cover
+      no-repeat;
   font-size: v.$fontSizeLarge;
   color: v.$bright-text;
   justify-content: space-evenly;
@@ -47,7 +45,6 @@ h1{
   bottom: 1rem;
   right: 1rem;
 }
-
 
 .footer {
   min-height: 30vh;
@@ -88,4 +85,3 @@ h1{
 .footer__copyright {
   margin: 1rem 0;
 }
-
