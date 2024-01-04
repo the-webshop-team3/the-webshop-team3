@@ -234,6 +234,7 @@ const createProductsHtml = () => {
       const readMore = document.getElementById(
         "read-more"
       ) as HTMLButtonElement;
+      const productPageSize = document.getElementById("product-page-size")
       const productPagePrice = document.getElementById("product-page-price");
       const productPageWrapper = document.getElementById(
         "wrapper-product-page"
@@ -256,6 +257,9 @@ const createProductsHtml = () => {
       }
       if (productPageInfo) {
         productPageInfo.innerHTML = products[i].info;
+      }
+      if (productPageSize) {
+        productPageSize.innerHTML = "Storlek: " + products[i].size;
       }
       if (productPagePrice) {
         productPagePrice.innerHTML = products[i].price.toString() + " kr";

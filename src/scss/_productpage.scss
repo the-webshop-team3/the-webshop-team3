@@ -35,6 +35,7 @@
     grid-template-areas:
       "img hd"
       "img txt"
+      "img si"
       "img kr"
       "img btn"
       "img 1fr";
@@ -70,6 +71,9 @@
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+      &__size {
+    grid-area: si;
+  }
     @include m.tablet {
       // max-width: 80%;
     }
@@ -83,6 +87,7 @@
       -webkit-line-clamp: 10;
     }
   }
+
   &__price {
     position: relative;
     font-size: 2rem;
