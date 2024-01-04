@@ -61,11 +61,14 @@ const cart: Product[] = JSON.parse(
 const ctaButton = document.getElementById("cta");
 ctaButton?.addEventListener("click", () => {
   const productList = document.getElementById("product-list");
-
+  
   productList?.scrollIntoView({ behavior: "smooth" });
 });
 
 let totalPrice: number = 0;
+totalPrice = JSON.parse(
+  sessionStorage.getItem("totalPrice") || JSON.stringify(0)
+);
 
 let currentProduct: Product;
 
@@ -277,6 +280,8 @@ const createProductsHtml = () => {
 
 const cartHtml = () => {
   sessionStorage.setItem("cartItems", JSON.stringify(cart));
+  sessionStorage.setItem("totalPrice", JSON.stringify(totalPrice));
+  
 
   const cartContainer = document.querySelector("#cart-items");
   totalPriceTagCart.innerHTML = "Summa: " + totalPrice.toString() + " kr";
@@ -369,6 +374,8 @@ const cartHtml = () => {
 
 const cartHtmlForCheckout = () => {
   sessionStorage.setItem("cartItems", JSON.stringify(cart));
+  sessionStorage.setItem("totalPrice", JSON.stringify(totalPrice));
+
 
   const cartInCheckout = document.querySelector("#checkout-cart-items");
   let totalPriceInCheckout = document.getElementById("total-price-checkout");
@@ -554,3 +561,4 @@ closePage(closeCartButton, cartContainer);
 
 stopScroll();
 // quantityInCartIcon();
+cartContainItems()
