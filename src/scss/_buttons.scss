@@ -5,6 +5,10 @@
   border-radius: v.$btn-border-radius;
   padding: v.$btn-padding;
   border: 1px solid rgba(255, 255, 255, 0.46);
+  transition: all .3s;
+  &:hover{
+    filter: brightness(120%);
+  }
 
   &--primary {
     padding: v.$btn-padding-large;
@@ -18,6 +22,12 @@
     @include m.tablet{
       max-width:300px;
     }
+  }
+  &--secondary{
+    border: 2px solid v.$button-primary;
+    // background: white;
+    box-shadow: -2px -1px 10px rgba(0, 0, 0, 0.326);
+
   }
   &--tertiary{
     width: 6rem;

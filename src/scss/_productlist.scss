@@ -25,6 +25,12 @@
     background-color: rgb(255, 249, 238);
     cursor: pointer;
     position: relative;
+    transition: all .3s ease-in-out;
+    
+    &:hover{
+  box-shadow: -2px -1px 10px rgba(0, 0, 0, 0.326);
+
+    }
     
     img {
       object-fit: contain;

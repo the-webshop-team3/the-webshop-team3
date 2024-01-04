@@ -82,7 +82,7 @@ export const stopScroll = () => {
   const pages = {
     productPage: document.getElementById("wrapper-product-page"),
     cart: document.getElementById("cart"),
-    checkout: document.querySelector(".c-checkout"),
+    checkout: document.getElementById("checkout"),
   };
 
   if (

@@ -22,17 +22,6 @@
     display: flex !important;
   }
 
-  button {
-    margin: v.$small-margin;
-    padding: v.$btn-padding-large;
-    background-color: v.$button-primary;
-    color: v.$bright-text;
-    border-style: none;
-    border-radius: v.$btn-border-radius;
-    font-family: informapro, sans-serif;
-    font-size: v.$fontSizeMedium;
-  }
-
   &__header {
     padding: 1rem;
   }
@@ -47,6 +36,7 @@
     display: flex;
     justify-content: flex-end;
     margin-bottom: 5rem;
+    gap: 1rem;
   }
 }
 

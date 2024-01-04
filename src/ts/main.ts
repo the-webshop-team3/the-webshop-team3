@@ -61,7 +61,7 @@ const cart: Product[] = JSON.parse(
 const ctaButton = document.getElementById("cta");
 ctaButton?.addEventListener("click", () => {
   const productList = document.getElementById("product-list");
-  
+
   productList?.scrollIntoView({ behavior: "smooth" });
 });
 
@@ -99,7 +99,12 @@ const cartContainer = document.querySelector(".cart") as HTMLElement;
 
 const totalPriceTagCart = document.createElement("p");
 
-openCheckoutButton.addEventListener("click", stopScroll);
+closePage(closeCheckoutButton, checkoutContainer);
+openPage(openCheckoutButton, checkoutContainer);
+openPage(openCartButton, cartContainer);
+closePage(closeCartButton, cartContainer);
+
+// openCheckoutButton.addEventListener("click", stopScroll);
 closeCheckoutButton.addEventListener("click", stopScroll);
 openCartButton.addEventListener("click", stopScroll);
 closeCartButton.addEventListener("click", stopScroll);
@@ -281,7 +286,6 @@ const createProductsHtml = () => {
 const cartHtml = () => {
   sessionStorage.setItem("cartItems", JSON.stringify(cart));
   sessionStorage.setItem("totalPrice", JSON.stringify(totalPrice));
-  
 
   const cartContainer = document.querySelector("#cart-items");
   totalPriceTagCart.innerHTML = "Summa: " + totalPrice.toString() + " kr";
@@ -376,7 +380,6 @@ const cartHtmlForCheckout = () => {
   sessionStorage.setItem("cartItems", JSON.stringify(cart));
   sessionStorage.setItem("totalPrice", JSON.stringify(totalPrice));
 
-
   const cartInCheckout = document.querySelector("#checkout-cart-items");
   let totalPriceInCheckout = document.getElementById("total-price-checkout");
   if (totalPriceInCheckout) {
@@ -466,7 +469,8 @@ function handlePurchase(event: Event) {
 
 function showPurchaseModal(userEmail: string) {
   const modal = document.getElementById("purchaseModal") as HTMLDivElement;
-  modal.style.display = "block";
+  modal.classList.add("--active");
+
   const orderDetailsContainer = document.createElement("div");
   orderDetailsContainer.classList.add("order-details-container");
 
@@ -496,12 +500,13 @@ function showPurchaseModal(userEmail: string) {
   totalPriceTagModal.innerHTML = `<br>Totalt belopp: ${totalOrderPrice} kr`;
   orderDetailsContainer.appendChild(totalPriceTagModal);
   modalContent.appendChild(orderDetailsContainer);
- 
+
   const closeModalButton = document.getElementById(
     "closeModalButton"
   ) as HTMLButtonElement;
   closeModalButton.addEventListener("click", () => {
-    modal.style.display = "none";
+    // modal.style.display = "none";
+    modal.classList.remove("--active");
 
     //nollställer totalpriset efter genomfört köp
     totalPrice = 0;
@@ -554,11 +559,6 @@ createProductsHtml();
 cartHtml();
 cartHtmlForCheckout();
 
-openPage(openCheckoutButton, checkoutContainer);
-closePage(closeCheckoutButton, checkoutContainer);
-openPage(openCartButton, cartContainer);
-closePage(closeCartButton, cartContainer);
-
-stopScroll();
+/* stopScroll(); */
 // quantityInCartIcon();
-cartContainItems()
+cartContainItems();

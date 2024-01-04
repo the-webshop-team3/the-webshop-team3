@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/png" href="src/assets/img/resized_images/red_spruce_icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
@@ -34,7 +34,7 @@
       <div class="l-wrapper" id="wrapper-product-page">
         <section class="c-product-page">
           <button
-            class="c-product-page__close-button"
+            class="c-product-page__close-button c-button c-button--secondary"
             id="product-page-close-button"
           >
             Stäng
@@ -67,9 +67,9 @@
           </button>
         </section>
       </div>
-      <section class="c-checkout">
+      <section class="c-checkout" id="checkout">
         <h2 class="c-checkout__title" id="checkout-title">Kassa</h2>
-        <button class="c-button c-button--primary" id="checkout-close-button">
+        <button class="c-button c-button--secondary" id="checkout-close-button">
           stäng
         </button>
         <section class="cart--checkout" id="cart-checkout">
@@ -146,7 +146,7 @@
             </div>
           </div>
           <div class="mb-2 col-md-12">
-            <button class="btn btn-primary" id="modalButton">
+            <button class="c-button c-button--primary" id="modalButton">
               Genomför köp
             </button>
           </div>
@@ -162,8 +162,8 @@
         <ul class="l-list-cart" id="cart-items"></ul>
         <div class="cart__total-price"></div>
         <div class="cart__button-wrapper">
-          <button class="cart__checkout-button">Till kassan</button>
-          <button class="cart__close-button">Stäng</button>
+          <button class="cart__checkout-button c-button c-button--primary">Till kassan</button>
+          <button class="cart__close-button c-button c-button--secondary">Stäng</button>
         </div>
       </section>
     </aside>
