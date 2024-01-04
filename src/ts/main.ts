@@ -502,8 +502,8 @@ function showPurchaseModal(userEmail: string) {
 
   const modalContent = modal.querySelector(".modal-content") as HTMLDivElement;
   modalContent.innerHTML = `
-  <div class="checkmark">&#10003;</div>
-    <span id="closeModalButton" class="close">&times;</span>
+    <div class="checkmark">&#10003;</div>
+    <i id="closeModalButton" class="bi bi-x-lg"></i>
     <h3>Ditt köp har genomförts!</h3>
     <p class="purchaseModalEmail">Betalningsinstruktioner kommer skickas till: ${userEmail}</p>
     <h4>Orderdetaljer</h4>

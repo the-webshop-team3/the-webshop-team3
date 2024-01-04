@@ -88,6 +88,9 @@ position: relative;
 padding: 1rem 0 6rem 0;
 border-radius: 1.5rem;
 font-size: 1.8rem;
+h4{
+  margin-top:3.5rem;
+}
 
 .purchaseModalEmail {
   font-size: v.$fontSizeMedium;
@@ -110,13 +113,15 @@ font-size: 1.8rem;
   border-bottom: none; 
 }
 
-.close {
+.bi.bi-x-lg {
   position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 3rem;
+  top: -10px;
+  right: 18px;
+  font-size: 2.5rem;
   padding: 10px;
   cursor: pointer;
+  width: 43.66px;
+
 }
 }
 }
