@@ -545,7 +545,12 @@ function showPurchaseModal(userEmail: string) {
     checkoutContainer.classList.remove("--active");
     cartContainer.classList.remove("--active");
     productPage.classList.remove("--active");
+    stopScroll();
+    quantityInCartIcon();
     window.scrollTo(0, 0);
+    setTimeout(()=>{
+      location.reload()
+    } ,1000);
   });
 }
 
