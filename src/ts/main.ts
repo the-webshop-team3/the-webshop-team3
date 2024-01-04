@@ -48,7 +48,7 @@ const products = [
     "src/assets/img/resized_images/red_spruce_xl.webp",
     "300 – 350 cm",
     990,
-    "Text om gran 6",
+    "Inget fångar julens anda som den klassiska rödgranen. Dess slanka silhuett och intensiva gröna barr skapar en fantastisk atmosfär och sprider en ljuvlig doft i varje vrå. Rödgranen är mer än en dekoration – den är själva hjärtat i julens festligheter och bjuder in till en tid av gemenskap och värme.",
     "006"
   ),
 ];
@@ -58,10 +58,13 @@ const cart: Product[] = JSON.parse(
 );
 
 // CTA scrollar till produkterna
-const ctaButton = document.getElementById("cta")?.addEventListener("click",()=>{
-  const productList = document.getElementById("product-list")?.scrollIntoView({behavior:"smooth"})
-})
-
+const ctaButton = document
+  .getElementById("cta")
+  ?.addEventListener("click", () => {
+    const productList = document
+      .getElementById("product-list")
+      ?.scrollIntoView({ behavior: "smooth" });
+  });
 
 let totalPrice: number = 0;
 
@@ -116,19 +119,23 @@ const createProductsHtml = () => {
     productFooter.appendChild(addToCartButton);
 
     addToCartButton.addEventListener("click", () => {
+      
       const checkId = cart.findIndex(
         (product) => product.id === products[i].id
-      );
-      console.log(checkId);
-
-      if (checkId !== -1) {
-        products[i].quantity++;
-        totalPrice += products[i].price;
-        console.log(cart);
-        console.log(totalPrice);
-
-        cartHtml();
-        cartHtmlForCheckout();
+        );
+        console.log(checkId);
+        
+        if (checkId !== -1) {
+          products[i].quantity++;
+          totalPrice += products[i].price;
+          console.log(cart);
+          console.log(totalPrice);
+          
+          cartHtml();
+          cartHtmlForCheckout();
+          quantityInCartIcon();
+          cartContainItems();
+        
       } else {
         cart.push(products[i]);
         totalPrice += products[i].price;
@@ -137,6 +144,8 @@ const createProductsHtml = () => {
 
         cartHtml();
         cartHtmlForCheckout();
+        quantityInCartIcon();
+        cartContainItems();
       }
     });
 
@@ -265,6 +274,8 @@ const cartHtml = () => {
       console.log(totalPrice);
       cartHtml();
       cartHtmlForCheckout();
+      quantityInCartIcon();
+      cartContainItems()
     });
     removeButton.addEventListener("click", () => {
       if (cart[i].quantity === 1) {
@@ -272,6 +283,7 @@ const cartHtml = () => {
         cart.splice(i, 1);
         cartHtml();
         cartHtmlForCheckout();
+        cartContainItems()
       } else {
         cart[i].quantity--;
         totalPrice -= cart[i].price;
@@ -279,6 +291,9 @@ const cartHtml = () => {
         console.log(totalPrice);
         cartHtml();
         cartHtmlForCheckout();
+        quantityInCartIcon();
+        cartContainItems()
+
       }
     });
   }
@@ -342,6 +357,8 @@ const cartHtmlForCheckout = () => {
       console.log(totalPrice);
       cartHtml();
       cartHtmlForCheckout();
+      quantityInCartIcon();
+      cartContainItems()
     });
     removeButton.addEventListener("click", () => {
       if (cart[i].quantity === 1) {
@@ -349,6 +366,8 @@ const cartHtmlForCheckout = () => {
         cart.splice(i, 1);
         cartHtml();
         cartHtmlForCheckout();
+        quantityInCartIcon();
+
       } else {
         cart[i].quantity--;
         totalPrice -= cart[i].price;
@@ -356,6 +375,7 @@ const cartHtmlForCheckout = () => {
         console.log(totalPrice);
         cartHtml();
         cartHtmlForCheckout();
+        quantityInCartIcon();
       }
     });
   }
@@ -377,6 +397,8 @@ productPageCartButton?.addEventListener("click", () => {
 
     cartHtml();
     cartHtmlForCheckout();
+    quantityInCartIcon();
+
   } else {
     cart.push(currentProduct);
     totalPrice += currentProduct.price;
@@ -385,6 +407,8 @@ productPageCartButton?.addEventListener("click", () => {
 
     cartHtml();
     cartHtmlForCheckout();
+    quantityInCartIcon();
+
   }
 });
 
@@ -564,3 +588,34 @@ cardTitle?.addEventListener("click", stopScroll);
 cardImage?.addEventListener("click", stopScroll);
 cardInfo?.addEventListener("click", stopScroll);
 
+//räkna ut antal produkter i varukorg
+let sum: number = 0;
+const quantityInCartIcon = () => {
+  const theQuantity = document.createElement("p");
+  theQuantity.innerHTML = "";
+  for (let i = 0; i < cart.length; i++) {
+    sum += cart[i].quantity;
+    console.log(sum);
+  }
+  theQuantity.innerHTML = sum.toString();
+  // document.body.appendChild(theQuantity)
+  return sum;
+};
+quantityInCartIcon();
+console.log(sum);
+
+// visa fylld varukorg
+const cartContainItems = () => {
+  const cartIcon = document.getElementById("cart-icon");
+  if (cart.length !== 0) {
+    cartIcon?.classList.remove("bi-cart");
+    cartIcon?.classList.add("bi-cart-fill");
+  }
+  else{
+    cartIcon?.classList.remove("bi-cart-fill");
+    cartIcon?.classList.add("bi-cart");
+  }
+  //   if(cartIcon){
+  //   cartIcon.innerHTML = "";
+  // }
+};
