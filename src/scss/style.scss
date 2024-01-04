@@ -133,16 +133,23 @@ h4{
 }
 
 .checkmark {
-color: green;
-font-size: 4rem;
-border: 3px solid green;
-width: 4rem;
-height: v.$large-height;
-border-radius: 2rem;
-margin: 2rem auto ;
+  color: green;
+  font-size: 4rem;
+  border: 3px solid green;
+  width: 4rem;
+  height: v.$large-height;
+  border-radius: 2rem;
+  margin: 2rem auto;
+  transform: skew(0, 0);
 
+  animation: skewAnimation 1s ease-in-out 2 alternate; 
 
-
-
-
+@keyframes skewAnimation {
+  from {
+    transform: skew(-20deg, 0); 
+  }
+  to {
+    transform: skew(0, 0);
+  }
+ }
 }
