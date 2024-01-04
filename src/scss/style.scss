@@ -100,3 +100,64 @@ h1 {
     text-align: center;
   }
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal {
+animation: fadeIn 0.5s ease; 
+
+.modal-content {
+position: relative; 
+padding: 1rem 0 6rem 0;
+border-radius: 1.5rem;
+font-size: 1.8rem;
+
+.purchaseModalEmail {
+  font-size: v.$fontSizeMedium;
+}
+
+.order-details-container {
+  border: 1px solid gray;
+  border-radius: 1.5rem;
+  padding: v.$fontSizeMedium;
+  font-size: 1.2rem;
+  margin: 0 auto; 
+}
+
+.order-details-item {
+  border-bottom: 1px solid gray; 
+  margin: v.$standard-margin 0 0 0;
+}
+
+.order-details-item:last-child {
+  border-bottom: none; 
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 3rem;
+  padding: 10px;
+  cursor: pointer;
+}
+}
+}
+
+.checkmark {
+color: green;
+font-size: 4rem;
+border: 3px solid green;
+width: 4rem;
+height: v.$large-height;
+border-radius: 2rem;
+margin: 2rem auto ;
+
+}
