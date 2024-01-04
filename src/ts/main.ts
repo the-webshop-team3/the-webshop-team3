@@ -420,12 +420,14 @@ buyButton.addEventListener("click", handlePurchase);
 function handlePurchase(event: Event) {
   event.preventDefault();
 
+  const emailInput = document.getElementById("email") as HTMLInputElement;
+  const userEmail = emailInput.value;
+  
   if (validateForm()) {
-    showPurchaseModal();
+    showPurchaseModal(userEmail);
   }
 }
 
-//---------
 function validateForm(): boolean {
   const fullname = document.getElementById("fullname") as HTMLInputElement;
   const address = document.getElementById("address") as HTMLInputElement;
@@ -490,12 +492,41 @@ function isValidEmail(email: string): boolean {
 function isValidPhoneNumber(phoneNumber: string): boolean {
   return /^\d{10}$/.test(phoneNumber);
 }
-//---------
 
-function showPurchaseModal() {
+function showPurchaseModal(userEmail: string) {
   const modal = document.getElementById("purchaseModal") as HTMLDivElement;
   modal.style.display = "block";
+//-----
+  const orderDetailsContainer = document.createElement("div");
+  orderDetailsContainer.classList.add("order-details-container")
 
+  const modalContent = modal.querySelector(".modal-content") as HTMLDivElement;
+  modalContent.innerHTML = `
+  <div class="checkmark">&#10003;</div>
+    <span id="closeModalButton" class="close">&times;</span>
+    <h3>Ditt köp har genomförts!</h3>
+    <p class="purchaseModalEmail">Betalningsinstruktioner kommer skickas till: ${userEmail}</p>
+    <h4>Orderdetaljer</h4>
+  `;
+  
+  let totalOrderPrice = 0;
+  
+  for (let i = 0; i < cart.length; i++) {
+    const productDetails = document.createElement("p");
+    productDetails.classList.add("order-details-item");
+    const productPrice = cart[i].price * cart[i].quantity;
+    totalOrderPrice += productPrice;
+    productDetails.innerHTML = `
+      ${cart[i].title} - ${productPrice} kr <br> Antal: ${cart[i].quantity}
+    `;
+    orderDetailsContainer.appendChild(productDetails);
+  }
+
+  const totalPriceTag = document.createElement("p");
+  totalPriceTag.innerHTML = `<br>Totalt belopp: ${totalOrderPrice} kr`;
+  orderDetailsContainer.appendChild(totalPriceTag)
+  modalContent.appendChild(orderDetailsContainer);
+//-----
   const closeModalButton = document.getElementById(
     "closeModalButton"
   ) as HTMLButtonElement;
