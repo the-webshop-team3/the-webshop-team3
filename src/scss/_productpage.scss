@@ -1,5 +1,6 @@
 @use "variables" as v;
 @use "mixins" as m;
+@use 'keyframes' as k;
 
 .l-wrapper#wrapper-product-page {
   display: none;
@@ -27,6 +28,8 @@
   background: v.$primary-color;
   padding: 1rem;
   padding-bottom: 8rem;
+  @include k.fade;
+
   @include m.lg {
     // flex-direction: column;
     // flex-wrap: wrap;

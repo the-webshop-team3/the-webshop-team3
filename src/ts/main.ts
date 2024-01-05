@@ -127,13 +127,11 @@ const productPageCartButton = document.getElementById(
 );
 productPageCartButton?.addEventListener("click", () => {
   const checkId = cart.findIndex((product) => product.id === currentProduct.id);
-  console.log(checkId);
 
   if (checkId !== -1) {
     currentProduct.quantity++;
     totalPrice += currentProduct.price;
-    console.log(cart);
-    console.log(totalPrice);
+
 
     cartHtml();
     cartHtmlForCheckout();
@@ -141,8 +139,7 @@ productPageCartButton?.addEventListener("click", () => {
   } else {
     cart.push(currentProduct);
     totalPrice += currentProduct.price;
-    console.log(cart);
-    console.log(totalPrice);
+
 
     cartHtml();
     cartHtmlForCheckout();
@@ -201,13 +198,11 @@ const createProductsHtml = () => {
       const checkId = cart.findIndex(
         (product) => product.id === products[i].id
       );
-      console.log(checkId);
 
       if (checkId !== -1) {
         products[i].quantity++;
         totalPrice += products[i].price;
-        console.log(cart);
-        console.log(totalPrice);
+     
 
         cartHtml();
         cartHtmlForCheckout();
@@ -216,8 +211,7 @@ const createProductsHtml = () => {
       } else {
         cart.push(products[i]);
         totalPrice += products[i].price;
-        console.log(cart);
-        console.log(totalPrice);
+  
 
         cartHtml();
         cartHtmlForCheckout();
@@ -351,8 +345,7 @@ const cartHtml = () => {
     addButton.addEventListener("click", () => {
       cart[i].quantity++;
       totalPrice += cart[i].price;
-      console.log(cart);
-      console.log(totalPrice);
+ 
       cartHtml();
       cartHtmlForCheckout();
       // quantityInCartIcon();
@@ -368,8 +361,7 @@ const cartHtml = () => {
       } else {
         cart[i].quantity--;
         totalPrice -= cart[i].price;
-        console.log(cart);
-        console.log(totalPrice);
+     
         cartHtml();
         cartHtmlForCheckout();
         // quantityInCartIcon();
@@ -433,8 +425,7 @@ const cartHtmlForCheckout = () => {
     addButton.addEventListener("click", () => {
       cart[i].quantity++;
       totalPrice += cart[i].price;
-      console.log(cart);
-      console.log(totalPrice);
+  
       cartHtml();
       cartHtmlForCheckout();
       // quantityInCartIcon();
@@ -450,8 +441,7 @@ const cartHtmlForCheckout = () => {
       } else {
         cart[i].quantity--;
         totalPrice -= cart[i].price;
-        console.log(cart);
-        console.log(totalPrice);
+
         cartHtml();
         cartHtmlForCheckout();
         // quantityInCartIcon();
@@ -519,7 +509,6 @@ function showPurchaseModal(userEmail: string) {
     cart.splice(0, cart.length);
     cartHtml();
     cartHtmlForCheckout();
-    console.log(cart);
     //stänger de öppna sidorna och scrollar till toppen
     checkoutContainer.classList.remove("--active");
     cartContainer.classList.remove("--active");
@@ -532,20 +521,6 @@ function showPurchaseModal(userEmail: string) {
     }, 1000);
   });
 }
-
-//räkna ut antal produkter i varukorg
-/* let sum: number = 0;
-const quantityInCartIcon = () => {
-  const theQuantity = document.createElement("p");
-  theQuantity.innerHTML = "";
-  for (let i = 0; i < cart.length; i++) {
-    sum += cart[i].quantity;
-    console.log(sum);
-  }
-  theQuantity.innerHTML = sum.toString();
-  // document.body.appendChild(theQuantity)
-  return sum;
-}; */
 
 // visa fylld varukorg
 const cartContainItems = () => {

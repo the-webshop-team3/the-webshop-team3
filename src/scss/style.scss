@@ -7,6 +7,7 @@
 @use "checkout";
 @use "thankyou";
 @use "footer";
+@use 'keyframes' as k;
 
 *,
 p {
@@ -71,20 +72,12 @@ h3 {
   }
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+
 
 
 .modal {
 
-animation: fadeIn 0.5s ease; 
-
+@include k.fade;
 .modal-content {
 position: relative; 
 padding: 1rem 0 6rem 0;
@@ -142,18 +135,6 @@ h4{
   margin: 2rem auto;
   transform: skew(0, 0);
 
-  animation: skewAnimation 1s ease-in-out alternate; 
+@include k.skew;
 
-@keyframes skewAnimation {
-  from {
-    transform: skew(-10deg, 10deg); 
-  }
-  50%{
-    transform: skew(5deg, -5deg); 
-
-  }
-  to {
-    transform: skew(0, 0);
-  }
- }
 }
