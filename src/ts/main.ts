@@ -104,20 +104,18 @@ openPage(openCheckoutButton, checkoutContainer);
 openPage(openCartButton, cartContainer);
 closePage(closeCartButton, cartContainer);
 
-// openCheckoutButton.addEventListener("click", stopScroll);
-closeCheckoutButton.addEventListener("click", stopScroll);
 openCartButton.addEventListener("click", stopScroll);
 closeCartButton.addEventListener("click", stopScroll);
 productPage.addEventListener("click", stopScroll);
 closeProductPageButton.addEventListener("click", stopScroll);
+closeCheckoutButton.addEventListener("click", () => {
+  cartContainer.classList.remove("--active");
+  document.body.classList.remove("stop-scroll");
+});
 
 cardTitle?.addEventListener("click", stopScroll);
 cardImage?.addEventListener("click", stopScroll);
 cardInfo?.addEventListener("click", stopScroll);
-
-closeCheckoutButton.addEventListener("click", () => {
-  cartContainer.classList.remove("--active");
-});
 
 const buyButton = document.getElementById("modalButton") as HTMLButtonElement;
 buyButton.addEventListener("click", handlePurchase);
@@ -132,18 +130,20 @@ productPageCartButton?.addEventListener("click", () => {
     currentProduct.quantity++;
     totalPrice += currentProduct.price;
 
-
     cartHtml();
     cartHtmlForCheckout();
     // quantityInCartIcon();
+    cartContainItems();
+
   } else {
     cart.push(currentProduct);
     totalPrice += currentProduct.price;
 
-
     cartHtml();
     cartHtmlForCheckout();
     // quantityInCartIcon();
+    cartContainItems();
+
   }
 });
 
@@ -202,20 +202,16 @@ const createProductsHtml = () => {
       if (checkId !== -1) {
         products[i].quantity++;
         totalPrice += products[i].price;
-     
 
         cartHtml();
         cartHtmlForCheckout();
-        // quantityInCartIcon();
         cartContainItems();
       } else {
         cart.push(products[i]);
         totalPrice += products[i].price;
-  
 
         cartHtml();
         cartHtmlForCheckout();
-        // quantityInCartIcon();
         cartContainItems();
       }
     });
@@ -228,7 +224,7 @@ const createProductsHtml = () => {
       const readMore = document.getElementById(
         "read-more"
       ) as HTMLButtonElement;
-      const productPageSize = document.getElementById("product-page-size")
+      const productPageSize = document.getElementById("product-page-size");
       const productPagePrice = document.getElementById("product-page-price");
       const productPageWrapper = document.getElementById(
         "wrapper-product-page"
@@ -345,7 +341,7 @@ const cartHtml = () => {
     addButton.addEventListener("click", () => {
       cart[i].quantity++;
       totalPrice += cart[i].price;
- 
+
       cartHtml();
       cartHtmlForCheckout();
       // quantityInCartIcon();
@@ -361,7 +357,7 @@ const cartHtml = () => {
       } else {
         cart[i].quantity--;
         totalPrice -= cart[i].price;
-     
+
         cartHtml();
         cartHtmlForCheckout();
         // quantityInCartIcon();
@@ -425,7 +421,7 @@ const cartHtmlForCheckout = () => {
     addButton.addEventListener("click", () => {
       cart[i].quantity++;
       totalPrice += cart[i].price;
-  
+
       cartHtml();
       cartHtmlForCheckout();
       // quantityInCartIcon();
