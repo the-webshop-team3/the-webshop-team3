@@ -1,97 +1,140 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@use "variables" as v;
+@use "buttons";
+@use "productlist";
+@use "mixins" as m;
+@use "productpage";
+@use "cart";
+@use "checkout";
+@use "thankyou";
+@use "footer";
+@use 'keyframes' as k;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+*,
+p {
+  padding: 0;
   margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "informapro", sans-serif;
+  // font-weight: 400;
+  font-style: normal;
+  background-color: v.$primary-color;
+}
+.stop-scroll {
+  overflow: hidden;
+}
+h1,
+h2,
+h3 {
+  font-family: "roca", sans-serif;
+}
+
+.header {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  height: 100vh;
+  background: linear-gradient(to top, rgba(black, 0.4), rgba(whitesmoke, 0.1)),
+    url("src/assets/img/resized_images/hero.webp") center/cover
+      no-repeat;
+  color: v.$bright-text;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  &__logo {
+    font-size: v.$fontSizeXL;
+    @include m.lg{
+    font-size: v.$fontSizeXXL;
+  }
+  }
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+#main {
+  min-height: 70vh;
+
+  // border: 1px solid v.$secondary-color;
+}
+#main-cart-button {
+  position: fixed;
+  z-index: 1;
+  bottom: 1rem;
+  right: 1rem;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+
+
+.form-validation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .col-md-12 {
+    text-align: center;
+  }
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #3178c6aa);
+
+
+
+.modal {
+
+@include k.fade;
+.modal-content {
+position: relative; 
+padding: 1rem 0 6rem 0;
+border-radius: 1.5rem;
+font-size: 1.8rem;
+h4{
+  margin-top:3.5rem;
 }
 
-.card {
-  padding: 2em;
+.purchaseModalEmail {
+  font-size: v.$fontSizeMedium;
 }
 
-.read-the-docs {
-  color: #888;
+.order-details-container {
+  border: 1px solid gray;
+  border-radius: 1.5rem;
+  padding: v.$fontSizeMedium;
+  font-size: 1.2rem;
+  margin: 0 auto; 
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.order-details-item {
+  border-bottom: 1px solid gray; 
+  margin: v.$standard-margin 0 0 0;
+}
+
+.order-details-item:last-child {
+  border-bottom: none; 
+}
+
+.bi.bi-x-lg {
+  position: absolute;
+  top: -10px;
+  right: 18px;
+  font-size: 2.5rem;
+  padding: 10px;
   cursor: pointer;
-  transition: border-color 0.25s;
+  width: 43.66px;
+
 }
-button:hover {
-  border-color: #646cff;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+&.--active{
+  display: block;
+
+}
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.checkmark {
+  color: green;
+  font-size: 4rem;
+  border: 3px solid green;
+  width: 4rem;
+  height: v.$large-height;
+  border-radius: 2rem;
+  margin: 2rem auto;
+  transform: skew(0, 0);
+
+@include k.skew;
+
 }

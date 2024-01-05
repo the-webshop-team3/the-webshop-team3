@@ -1,0 +1,132 @@
+@use "variables" as v;
+@use "mixins" as m;
+@use 'keyframes' as k;
+
+.c-checkout {
+  display: none;
+  position: fixed;
+  flex-direction: column;
+  align-items: center;
+  top: 0;
+  z-index: 3;
+  height: 100vh;
+  width: 100vw;
+  background-color: v.$primary-color;
+  @include k.fade;
+
+
+  @include m.lg {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 3rem;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  &__title {
+    padding: 1rem;
+
+    @include m.lg {
+      width: 100%;
+    }
+  }
+
+  #checkout-close-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: fit-content;
+  }
+}
+
+.c-checkout.--active {
+  display: flex;
+}
+
+#cart-checkout {
+  background-color: rgb(255, 255, 255);
+  overflow: auto;
+  height: 50vh;
+  width: 80%;
+  flex-direction: column;
+  padding: 5px 5px 0 5px;
+
+  @include m.lg {
+    width: 50%;
+    height: 70%;
+    margin-right: 5%;
+  }
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgb(226, 213, 195);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgb(170, 155, 135);
+    border-radius: 10px;
+  }
+}
+
+#checkout-cart-items {
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+
+  img {
+    max-height: 120px;
+  }
+
+  .c-card-checkout {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: solid 1px grey;
+
+    &__footer {
+      button {
+        background-color: v.$button-primary;
+        color: v.$bright-text;
+        font-size: v.$fontSizeMedium;
+        width: 40px;
+        padding: 0.3rem;
+        margin: v.$small-margin;
+        border-radius: v.$btn-border-radius;
+        border-style: none;
+      }
+    }
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  position: relative;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+
+  @include m.lg {
+    width: 40%;
+  }
+
+  div {
+    width: 100%;
+  }
+
+  .form-label {
+    margin: 0;
+  }
+
+  .form-control {
+    padding: 2px;
+
+    @include m.lg {
+      padding: 8px;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+@mixin fade {
+  animation: fadeIn 0.5s ease;
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+@mixin skew {
+  animation: skewAnimation 1s ease-in-out alternate;
+
+  @keyframes skewAnimation {
+    from {
+      transform: skew(-10deg, 10deg);
+    }
+    50% {
+      transform: skew(5deg, -5deg);
+    }
+    to {
+      transform: skew(0, 0);
+    }
+  }
+}
